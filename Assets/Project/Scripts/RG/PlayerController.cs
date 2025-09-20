@@ -1,35 +1,78 @@
-using System.Runtime.CompilerServices;
-using RG.Systems;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour, IPlayerContext
+public class FirstPersonController : MonoBehaviour
 {
-    Rigidbody rb;
-    [SerializeField] InputReader input;
-    [SerializeField] float rotationSpeed = 400;
-    [SerializeField] float moveSpeed = 10;
-    void Awake()
+    [Header("Movement Settings")]
+    public float moveSpeed = 5f;
+    public float mouseSensitivity = 2f;
+    
+    [Header("Rotation Limits")]
+    public float minVerticalAngle = -80f;
+    public float maxVerticalAngle = 80f;
+    
+    private Rigidbody rb;
+    [SerializeField] private InputReader input;
+    private float verticalRotation = 0f; // Para almacenar la rotación vertical acumulada
+    
+    void Start()
     {
-        rb = GetComponent<Rigidbody>();
         input.EnablePlayerInputActions();
+        rb = GetComponent<Rigidbody>();
+        
+        // Bloquear y ocultar el cursor
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
-
+    
     void FixedUpdate()
     {
-
-        Vector3 moveDirection = transform.forward * input.Direction.y * moveSpeed * Time.fixedDeltaTime;
-        float rotateAmount = input.Direction.x *  rotationSpeed * Time.fixedDeltaTime;
-        Quaternion turnRotation = Quaternion.Euler(0f, rotateAmount, 0f);
-
-        // Mover el Rigidbody de forma continua
-        rb.MovePosition(rb.position + moveDirection);
-
-        // Rotar el Rigidbody de forma continua
-        rb.MoveRotation(rb.rotation * turnRotation);
+        HandleMovement();
+        HandleRotation();
     }
-}
-
-public interface IPlayerContext : IStateContext
-{
-
+    
+    void HandleMovement()
+    {
+        Vector3 moveDirection = transform.forward * input.Direction.y * moveSpeed * Time.fixedDeltaTime;
+        // También puedes añadir movimiento lateral si lo necesitas
+        moveDirection += transform.right * input.Direction.x * moveSpeed * Time.fixedDeltaTime;
+        
+        rb.MovePosition(rb.position + moveDirection);
+    }
+    
+    void HandleRotation()
+    {
+        // Rotación horizontal (Yaw) - gira todo el objeto
+        float horizontalRotateAmount = input.LookDirection.x * mouseSensitivity;
+        Quaternion horizontalTurn = Quaternion.Euler(0f, horizontalRotateAmount, 0f);
+        
+        // Rotación vertical (Pitch) - solo gira la cámara (o la cabeza)
+        float verticalRotateAmount = -input.LookDirection.y * mouseSensitivity; // Negativo para invertir el eje Y del mouse
+        
+        // Acumular y limitar la rotación vertical
+        verticalRotation += verticalRotateAmount;
+        verticalRotation = Mathf.Clamp(verticalRotation, minVerticalAngle, maxVerticalAngle);
+        
+        // Aplicar rotaciones
+        rb.MoveRotation(rb.rotation * horizontalTurn);
+        
+        // Si tienes una cámara separada para la vista en primera persona
+        ApplyVerticalRotationToCamera();
+    }
+    
+    void ApplyVerticalRotationToCamera()
+    {
+        // Buscar la cámara hijo (asumiendo que la cámara es hijo del objeto con Rigidbody)
+        Camera playerCamera = GetComponentInChildren<Camera>();
+        if (playerCamera != null)
+        {
+            playerCamera.transform.localEulerAngles = new Vector3(verticalRotation, 0f, 0f);
+        }
+    }
+    
+    void OnDestroy()
+    {
+        // Restaurar el cursor cuando el objeto se destruye
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
 }

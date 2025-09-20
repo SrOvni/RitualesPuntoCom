@@ -1936,9 +1936,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6b70ba9d25195419f2f7305ea07b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  moveSpeed: 1
+  mouseSensitivity: 1
+  minVerticalAngle: -80
+  maxVerticalAngle: 80
   input: {fileID: 11400000, guid: ae991d9669c1eef478c09790ff529d02, type: 2}
-  rotationSpeed: 189.6
-  moveSpeed: 4.77
 --- !u!65 &1417284965
 BoxCollider:
   m_ObjectHideFlags: 0
