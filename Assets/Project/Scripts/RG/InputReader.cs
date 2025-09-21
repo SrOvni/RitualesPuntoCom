@@ -38,6 +38,9 @@ public class InputReader : ScriptableObject, IPlayerActions
     public event Action<Vector2> Move = delegate
     {
     };
+    public event Action Grab = delegate
+    {
+    };
 
     public void EnablePlayerInputActions()
     {
