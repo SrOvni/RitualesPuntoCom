@@ -16,7 +16,7 @@ public class HeadBobSystem : MonoBehaviour
     private Vector3 originalLocalPosition;
     private Vector3 targetBobPosition;
     
-    Rigidbody rigidbody;
+    // Rigidbody rigidbody;
     private PlayerController playerController;
 
     void Start()
@@ -25,7 +25,7 @@ public class HeadBobSystem : MonoBehaviour
         originalLocalPosition = transform.localPosition;
 
         // Intentar obtener referencias a los componentes necesarios
-        rigidbody = GetComponentInParent<Rigidbody>();
+        // rigidbody = GetComponentInParent<Rigidbody>();
         playerController = GetComponentInParent<PlayerController>();
         
         // Inicializar la posición objetivo
@@ -36,10 +36,7 @@ public class HeadBobSystem : MonoBehaviour
     {
         if (!enableHeadbob) return;
 
-        // Verificar si el jugador se está moviendo
-        bool isMoving = IsPlayerMoving();
-
-        if (isMoving)
+        if (IsPlayerMoving())
         {
             // Calcular el movimiento de headbob
             bobTimer += Time.deltaTime * bobFrequency;
@@ -64,20 +61,14 @@ public class HeadBobSystem : MonoBehaviour
 
     private bool IsPlayerMoving()
     {
-        // Verificar movimiento basado en el componente disponible
-        if (rigidbody != null)
+        if (playerController != null)
         {
-            return rigidbody.linearVelocity.magnitude > velocityThreshold;
-        }
-        else if (playerController != null)
-        {
-            // Asumiendo que FirstPersonController tiene una propiedad de velocidad
-            // Si no, puedes implementar tu propia lógica de detección de movimiento
             return playerController.Input.Direction.magnitude > 0;
         }
-        
-        // Fallback: usar input directo
-        return playerController.Input.Direction.magnitude > 0;
+        else
+        {
+            return false;
+        }
     }
 
     // Métodos públicos para controlar el headbob

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Linq;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,11 +16,16 @@ public class PlayerController : MonoBehaviour
     public InputReader Input => input;
     CharacterController characterController;
     private float verticalRotation = 0f; // Para almacenar la rotación vertical acumulada
-    
+    [SerializeField] AudioData[] startingAudio;
+    private void Awake() {
+        input.EnablePlayerInputActions();
+        characterController = GetComponent<CharacterController>();
+        AudioPlayer.Instance.Play(startingAudio[0]);
+    }
     void Start()
     {
-        characterController = GetComponent<CharacterController>();
-        input.EnablePlayerInputActions();
+        AudioPlayer.Instance.Play(startingAudio[1]);
+        
         // rb = GetComponent<Rigidbody>();
         
         // Bloquear y ocultar el cursor
@@ -29,15 +35,15 @@ public class PlayerController : MonoBehaviour
     
     void FixedUpdate()
     {
-        characterController.Move(HandleMovement());
+        characterController.SimpleMove(HandleMovement());
         HandleRotation();
     }
     
     Vector3 HandleMovement()
     {
-        Vector3 moveDirection = transform.forward * input.Direction.y * moveSpeed * Time.fixedDeltaTime;
+        Vector3 moveDirection = transform.forward * input.Direction.y * moveSpeed;
         // También puedes añadir movimiento lateral si lo necesitas
-        moveDirection += transform.right * input.Direction.x * moveSpeed * Time.fixedDeltaTime;
+        moveDirection += transform.right * input.Direction.x * moveSpeed;
 
         return moveDirection;
     }
