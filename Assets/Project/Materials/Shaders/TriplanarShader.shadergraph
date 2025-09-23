@@ -840,7 +840,7 @@
     },
     "m_TextureType": 1,
     "m_InputSpace": 4,
-    "m_NormalOutputSpace": 3
+    "m_NormalOutputSpace": 0
 }
 
 {
@@ -1240,7 +1240,7 @@
     "useTilingAndOffset": false,
     "useTexelSize": true,
     "m_Modifiable": true,
-    "m_DefaultType": 0
+    "m_DefaultType": 3
 }
 
 {
