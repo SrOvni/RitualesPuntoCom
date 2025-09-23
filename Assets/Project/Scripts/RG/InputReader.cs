@@ -13,6 +13,8 @@ public class InputReader : ScriptableObject, IPlayerActions
 
     public Vector2 LookDirection => _inputActions.Player.Look.ReadValue<Vector2>();
 
+    
+
     public event Action Attack = delegate
     {
     };
@@ -34,6 +36,9 @@ public class InputReader : ScriptableObject, IPlayerActions
     };
 
     public event Action<Vector2> Move = delegate
+    {
+    };
+    public event Action Grab = delegate
     {
     };
 
@@ -92,6 +97,14 @@ public class InputReader : ScriptableObject, IPlayerActions
     {
         
     }
+    public void OnGrab(InputAction.CallbackContext context)
+    {
+
+    }
+    public void OnLookPosition(InputAction.CallbackContext context)
+    {
+
+    }
 
     private void OnDisable()
     {
@@ -101,4 +114,5 @@ public class InputReader : ScriptableObject, IPlayerActions
         }
     }
 
+    
 }
