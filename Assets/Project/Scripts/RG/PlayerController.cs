@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FirstPersonController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
     public float moveSpeed = 5f;
@@ -12,12 +12,15 @@ public class FirstPersonController : MonoBehaviour
     
     private Rigidbody rb;
     [SerializeField] private InputReader input;
+    public InputReader Input => input;
+    CharacterController characterController;
     private float verticalRotation = 0f; // Para almacenar la rotación vertical acumulada
     
     void Start()
     {
+        characterController = GetComponent<CharacterController>();
         input.EnablePlayerInputActions();
-        rb = GetComponent<Rigidbody>();
+        // rb = GetComponent<Rigidbody>();
         
         // Bloquear y ocultar el cursor
         Cursor.lockState = CursorLockMode.Locked;
@@ -26,17 +29,17 @@ public class FirstPersonController : MonoBehaviour
     
     void FixedUpdate()
     {
-        HandleMovement();
+        characterController.Move(HandleMovement());
         HandleRotation();
     }
     
-    void HandleMovement()
+    Vector3 HandleMovement()
     {
         Vector3 moveDirection = transform.forward * input.Direction.y * moveSpeed * Time.fixedDeltaTime;
         // También puedes añadir movimiento lateral si lo necesitas
         moveDirection += transform.right * input.Direction.x * moveSpeed * Time.fixedDeltaTime;
-        
-        rb.MovePosition(rb.position + moveDirection);
+
+        return moveDirection;
     }
     
     void HandleRotation()
@@ -53,7 +56,7 @@ public class FirstPersonController : MonoBehaviour
         verticalRotation = Mathf.Clamp(verticalRotation, minVerticalAngle, maxVerticalAngle);
         
         // Aplicar rotaciones
-        rb.MoveRotation(rb.rotation * horizontalTurn);
+        transform.Rotate(horizontalTurn.eulerAngles);
         
         // Si tienes una cámara separada para la vista en primera persona
         ApplyVerticalRotationToCamera();

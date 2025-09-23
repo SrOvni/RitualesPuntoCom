@@ -3,6 +3,7 @@
     "com.gitamend.improvedtimers": "https://github.com/adammyhre/Unity-Improved-Timers.git",
     "com.reniergaytan.rgsystems": "https://github.com/SrOvni/Portafolio.git?path=Assets/Project/Scripts/RG/Systems",
     "com.unity.ai.navigation": "2.0.9",
+    "com.unity.cinemachine": "3.1.4",
     "com.unity.collab-proxy": "2.9.3",
     "com.unity.ide.visualstudio": "2.0.23",
     "com.unity.inputsystem": "1.14.2",

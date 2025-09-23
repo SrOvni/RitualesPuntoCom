@@ -1,30 +1,93 @@
-using System;
 using UnityEngine;
 
 public class HeadBobSystem : MonoBehaviour
 {
-    InputReader input;
+    [Header("Headbob Settings")]
+    public float bobFrequency = 1.5f;        // Frecuencia del movimiento
+    public float bobHorizontalAmplitude = 0.1f; // Amplitud horizontal
+    public float bobVerticalAmplitude = 0.1f;   // Amplitud vertical
+    public float bobSmoothness = 2f;          // Suavizado del movimiento
 
-    private void Awake()
+    [Header("Headbob Activation")]
+    public float velocityThreshold = 0.5f;    // Velocidad mínima para activar
+    public bool enableHeadbob = true;         // Activar/desactivar headbob
+
+    private float bobTimer = 0f;
+    private Vector3 originalLocalPosition;
+    private Vector3 targetBobPosition;
+    
+    Rigidbody rigidbody;
+    private PlayerController playerController;
+
+    void Start()
     {
-        input.EnablePlayerInputActions();
+        // Guardar la posición local original de la cámara
+        originalLocalPosition = transform.localPosition;
+
+        // Intentar obtener referencias a los componentes necesarios
+        rigidbody = GetComponentInParent<Rigidbody>();
+        playerController = GetComponentInParent<PlayerController>();
+        
+        // Inicializar la posición objetivo
+        targetBobPosition = originalLocalPosition;
     }
 
     void Update()
     {
-        CheckForHeadBobTrigger();
-    }
-    private void CheckForHeadBobTrigger()
-    {
-        float inputMagnitude = new Vector3(input.Direction.x, 0, input.Direction.y).magnitude;
-        if (inputMagnitude > 0)
+        if (!enableHeadbob) return;
+
+        // Verificar si el jugador se está moviendo
+        bool isMoving = IsPlayerMoving();
+
+        if (isMoving)
         {
-            StartHeadBob();
+            // Calcular el movimiento de headbob
+            bobTimer += Time.deltaTime * bobFrequency;
+            
+            // Calcular las oscilaciones
+            float horizontalBob = Mathf.Sin(bobTimer) * bobHorizontalAmplitude;
+            float verticalBob = (Mathf.Sin(bobTimer * 2) * 0.5f + 0.5f) * bobVerticalAmplitude;
+            
+            // Aplicar el movimiento
+            targetBobPosition = originalLocalPosition + new Vector3(horizontalBob, verticalBob, 0);
         }
+        else
+        {
+            // Volver suavemente a la posición original
+            bobTimer = 0f;
+            targetBobPosition = originalLocalPosition;
+        }
+
+        // Aplicar suavizado al movimiento
+        transform.localPosition = Vector3.Lerp(transform.localPosition, targetBobPosition, bobSmoothness * Time.deltaTime);
     }
 
-    private void StartHeadBob()
+    private bool IsPlayerMoving()
     {
-        throw new NotImplementedException();
+        // Verificar movimiento basado en el componente disponible
+        if (rigidbody != null)
+        {
+            return rigidbody.linearVelocity.magnitude > velocityThreshold;
+        }
+        else if (playerController != null)
+        {
+            // Asumiendo que FirstPersonController tiene una propiedad de velocidad
+            // Si no, puedes implementar tu propia lógica de detección de movimiento
+            return playerController.Input.Direction.magnitude > 0;
+        }
+        
+        // Fallback: usar input directo
+        return playerController.Input.Direction.magnitude > 0;
+    }
+
+    // Métodos públicos para controlar el headbob
+    public void EnableHeadbob() => enableHeadbob = true;
+    public void DisableHeadbob() => enableHeadbob = false;
+    public void ToggleHeadbob() => enableHeadbob = !enableHeadbob;
+
+    // Resetear la posición cuando se desactiva
+    private void OnDisable()
+    {
+        transform.localPosition = originalLocalPosition;
     }
 }
