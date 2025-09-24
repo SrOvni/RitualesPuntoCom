@@ -12463,12 +12463,12 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 62c3d9e7b6dc3ac449891dfb0b25841d, type: 2}
     - target: {fileID: 1039997710353773791, guid: 3ea60bffc0fe4be44888b893f5fcf1ae, type: 3}
       propertyPath: startingAudio.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1039997710353773791, guid: 3ea60bffc0fe4be44888b893f5fcf1ae, type: 3}
       propertyPath: 'startingAudio.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 03e50d38549e50c4cabf3755f052d4a1, type: 2}
+      objectReference: {fileID: 11400000, guid: 62c3d9e7b6dc3ac449891dfb0b25841d, type: 2}
     - target: {fileID: 1039997710353773791, guid: 3ea60bffc0fe4be44888b893f5fcf1ae, type: 3}
       propertyPath: 'startingAudio.Array.data[1]'
       value: 
