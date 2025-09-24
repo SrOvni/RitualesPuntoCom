@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class Item : MonoBehaviour, IInteractable
 {
+    Rigidbody Rb;
+    private void Awake() {
+        Rb.linearDamping = -10;
+    }
     [SerializeField] private string interactText = "Recoger";
 
     public string GetInteractText()
@@ -17,7 +21,7 @@ public class Item : MonoBehaviour, IInteractable
         {
             inventory.AddItem(gameObject);
 
-            // Opcional: desactivar colisiones y físicas para que no estorbe
+            // Opcional: desactivar colisiones y fï¿½sicas para que no estorbe
             Collider col = GetComponent<Collider>();
             if (col != null) col.enabled = false;
 
