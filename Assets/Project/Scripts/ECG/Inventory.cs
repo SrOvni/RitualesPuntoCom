@@ -4,8 +4,11 @@ using UnityEngine.InputSystem;
 
 public class Inventory : MonoBehaviour
 {
+    [Header("")]
     [SerializeField] Transform itemPosition;
     [SerializeField] List<GameObject> inventoryList = new List<GameObject>();
+
+
 
     private int currentIndex = -1;
     private GameObject currentItem;
@@ -28,6 +31,43 @@ public class Inventory : MonoBehaviour
             currentIndex = inventoryList.Count - 1;
             
             ShowItemAtIndex(currentIndex);
+    }
+    public void DropCurrentItem()
+    {
+        if (currentItem == null || currentIndex == 0) return;
+
+        // Quitar del inventario
+        GameObject itemToDrop = currentItem;
+        inventoryList.RemoveAt(currentIndex);
+
+        // Reajustar índice
+        if (inventoryList.Count == 0)
+        {
+            currentIndex = 1;
+            currentItem = null;
+        }
+        else
+        {
+            currentIndex %= inventoryList.Count;
+            ShowItemAtIndex(currentIndex);
+        }
+
+        // Soltar en el mundo
+        itemToDrop.transform.SetParent(null);
+        itemToDrop.SetActive(true);
+        itemToDrop.transform.position = itemPosition.position;
+        itemToDrop.transform.rotation = itemPosition.rotation;
+
+        // Reactivar física
+        Collider col = itemToDrop.GetComponent<Collider>();
+        if (col != null) col.enabled = true;
+
+        Rigidbody rb = itemToDrop.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.isKinematic = false;
+            rb.linearVelocity = Vector3.zero; // evitar arrastre raro
+        }
     }
 
     void Update()

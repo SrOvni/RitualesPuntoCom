@@ -591,6 +591,7 @@ MonoBehaviour:
   minVerticalAngle: -80
   maxVerticalAngle: 80
   input: {fileID: 11400000, guid: ae991d9669c1eef478c09790ff529d02, type: 2}
+  startingAudio: []
 --- !u!114 &2569763217080508223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -658,6 +659,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   interactAction: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  dropAction: {fileID: -6308639583839575647, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!65 &6449425829492577376
 BoxCollider:
   m_ObjectHideFlags: 0
