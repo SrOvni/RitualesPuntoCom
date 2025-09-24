@@ -2,10 +2,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour, IInteractable
 {
-    Rigidbody Rb;
-    private void Awake() {
-        Rb.linearDamping = -10;
-    }
+  
     [SerializeField] private string interactText = "Recoger";
 
     public string GetInteractText()
