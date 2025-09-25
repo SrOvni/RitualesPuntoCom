@@ -1,13 +1,18 @@
 using UnityEngine;
-
+public enum ItemType
+{
+    None,
+    Skull,
+    Candle,
+    Book,
+    Key
+}
 public class Item : MonoBehaviour, IInteractable
 {
-    Rigidbody Rb;
-    private void Awake() {
-        Rb.linearDamping = -10;
-    }
-    [SerializeField] private string interactText = "Recoger";
+    [SerializeField] private string interactText = "Pickup";
+    [SerializeField] private ItemType itemType = ItemType.None;
 
+    public ItemType Type => itemType;
     public string GetInteractText()
     {
         return interactText;
@@ -21,7 +26,7 @@ public class Item : MonoBehaviour, IInteractable
         {
             inventory.AddItem(gameObject);
 
-            // Opcional: desactivar colisiones y f�sicas para que no estorbe
+            //desactivar colisiones y f�sicas para que no estorbe
             Collider col = GetComponent<Collider>();
             if (col != null) col.enabled = false;
 
