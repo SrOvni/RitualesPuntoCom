@@ -46,7 +46,7 @@
                     "name": "Crouch",
                     "type": "Button",
                     "id": "27c5f898-bc57-4ee1-8800-db469aca5fe3",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -64,7 +64,7 @@
                     "name": "Previous",
                     "type": "Button",
                     "id": "2776c80d-3c14-4091-8c56-d04ced07a2b0",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -73,7 +73,7 @@
                     "name": "Next",
                     "type": "Button",
                     "id": "b7230bb6-fc9b-4f52-8b25-f5e19cb2c2ba",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -82,7 +82,7 @@
                     "name": "Sprint",
                     "type": "Button",
                     "id": "641cd816-40e6-41b4-8c3d-04687c349290",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -104,6 +104,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Drop",
+                    "type": "Button",
+                    "id": "7c99d900-1fd0-46b8-88e7-b619c9ee652b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -511,6 +520,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "LookPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "23f7a609-c0c7-4c1e-ab43-a980db937426",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Drop",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

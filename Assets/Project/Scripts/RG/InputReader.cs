@@ -101,6 +101,10 @@ public class InputReader : ScriptableObject, IPlayerActions
     {
 
     }
+    public void OnDrop(InputAction.CallbackContext context)
+    {
+
+    }
     public void OnLookPosition(InputAction.CallbackContext context)
     {
 

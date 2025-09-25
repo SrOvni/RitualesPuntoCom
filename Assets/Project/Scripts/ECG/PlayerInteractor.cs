@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,20 +7,34 @@ public class PlayerInteractor : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private float interactDistance = 3f;
     [SerializeField] private LayerMask interactLayer;
-    [SerializeField] private InputActionReference interactAction;
+    private Inventory inventory;
 
+    [Header("Input Actions")]
+    [SerializeField] private InputActionReference interactAction;
+    [SerializeField] private InputActionReference dropAction;
     private IInteractable currentTarget;
 
     void OnEnable()
     {
+
         interactAction.action.Enable();
         interactAction.action.performed += OnInteract;
+        dropAction.action.Enable();
+        dropAction.action.performed += OnDrop;
     }
 
     void OnDisable()
     {
+        
+        dropAction.action.performed += OnDrop;
         interactAction.action.performed -= OnInteract;
         interactAction.action.Disable();
+        dropAction.action.Disable();
+    }
+
+    private void Start()
+    {
+        inventory = GetComponent<Inventory>();
     }
 
     void Update()
@@ -43,11 +58,19 @@ public class PlayerInteractor : MonoBehaviour
 
     private void OnInteract(InputAction.CallbackContext ctx)
     {
-        Debug.Log("Interactuando");
+        
 
         if (currentTarget != null)
         {
             currentTarget.Interact(gameObject);
         }
     }
+
+    private void OnDrop(InputAction.CallbackContext ctx)
+    {
+        Debug.Log("Dropeando Objeto");
+        inventory.DropCurrentItem();
+
+    }
+
 }

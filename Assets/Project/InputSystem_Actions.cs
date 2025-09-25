@@ -132,7 +132,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""name"": ""Crouch"",
                     ""type"": ""Button"",
                     ""id"": ""27c5f898-bc57-4ee1-8800-db469aca5fe3"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -150,7 +150,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""name"": ""Previous"",
                     ""type"": ""Button"",
                     ""id"": ""2776c80d-3c14-4091-8c56-d04ced07a2b0"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -159,7 +159,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""name"": ""Next"",
                     ""type"": ""Button"",
                     ""id"": ""b7230bb6-fc9b-4f52-8b25-f5e19cb2c2ba"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -168,7 +168,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""name"": ""Sprint"",
                     ""type"": ""Button"",
                     ""id"": ""641cd816-40e6-41b4-8c3d-04687c349290"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -190,6 +190,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Drop"",
+                    ""type"": ""Button"",
+                    ""id"": ""7c99d900-1fd0-46b8-88e7-b619c9ee652b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -597,6 +606,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""LookPosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""23f7a609-c0c7-4c1e-ab43-a980db937426"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Drop"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1195,6 +1215,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_Grab = m_Player.FindAction("Grab", throwIfNotFound: true);
         m_Player_LookPosition = m_Player.FindAction("LookPosition", throwIfNotFound: true);
+        m_Player_Drop = m_Player.FindAction("Drop", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1299,6 +1320,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_Grab;
     private readonly InputAction m_Player_LookPosition;
+    private readonly InputAction m_Player_Drop;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1354,6 +1376,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/LookPosition".
         /// </summary>
         public InputAction @LookPosition => m_Wrapper.m_Player_LookPosition;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Drop".
+        /// </summary>
+        public InputAction @Drop => m_Wrapper.m_Player_Drop;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1413,6 +1439,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @LookPosition.started += instance.OnLookPosition;
             @LookPosition.performed += instance.OnLookPosition;
             @LookPosition.canceled += instance.OnLookPosition;
+            @Drop.started += instance.OnDrop;
+            @Drop.performed += instance.OnDrop;
+            @Drop.canceled += instance.OnDrop;
         }
 
         /// <summary>
@@ -1457,6 +1486,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @LookPosition.started -= instance.OnLookPosition;
             @LookPosition.performed -= instance.OnLookPosition;
             @LookPosition.canceled -= instance.OnLookPosition;
+            @Drop.started -= instance.OnDrop;
+            @Drop.performed -= instance.OnDrop;
+            @Drop.canceled -= instance.OnDrop;
         }
 
         /// <summary>
@@ -1834,6 +1866,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLookPosition(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Drop" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDrop(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.
