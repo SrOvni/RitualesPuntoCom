@@ -68,7 +68,7 @@ public class DoorController : MonoBehaviour, IInteractable
 
             // Calculate the direction the player is pushing/pulling from
             Vector3 playerViewPoint = playerCamera.position;
-            Vector3 doorPoint = rb.worldCenterOfMass; // A good point on the door to apply force
+            Vector3 doorPoint = rb.worldCenterOfMass; 
 
             // The point where the player is "looking" at the door
             RaycastHit hit;
