@@ -20,11 +20,11 @@ public class PlayerController : MonoBehaviour
     private void Awake() {
         input.EnablePlayerInputActions();
         characterController = GetComponent<CharacterController>();
-        AudioPlayer.Instance.Play(startingAudio[0]);
+        //AudioPlayer.Instance.Play(startingAudio[0]);
     }
     void Start()
     {
-        AudioPlayer.Instance.Play(startingAudio[1]);
+        //AudioPlayer.Instance.Play(startingAudio[1]);
         
         // rb = GetComponent<Rigidbody>();
         
