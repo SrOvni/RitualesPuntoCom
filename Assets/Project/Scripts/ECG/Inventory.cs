@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Inventory : MonoBehaviour
 {
-    [Header("")]
+    [Header("Inventory Config")]
     [SerializeField] Transform itemPosition;
     [SerializeField] List<GameObject> inventoryList = new List<GameObject>();
 
@@ -18,6 +18,9 @@ public class Inventory : MonoBehaviour
     {
         GameObject emptyholder = new GameObject("Empty Holder");
         inventoryList.Add(emptyholder);
+        // Inicializar el índice al primer elemento (el emptyholder)
+        currentIndex = 0;
+        currentItem = emptyholder;
     }
     public void AddItem(GameObject item)
     {
@@ -27,9 +30,17 @@ public class Inventory : MonoBehaviour
         // Desactivar en el mundo
         item.SetActive(false);
 
+        //desactivar colliders
+        Collider[] itemColliders = item.GetComponents<Collider>();
+        foreach (Collider col in itemColliders)
+        {
+            col.enabled = false;
+        }
+
         // Si es el primer item, seleccionarlo
 
         currentIndex = inventoryList.Count - 1;
+
 
         ShowItemAtIndex(currentIndex);
         ParentItem(currentIndex);
@@ -38,7 +49,7 @@ public class Inventory : MonoBehaviour
     private void ParentItem(int currentIndex)
     {
         scale = currentItem.transform.lossyScale;
-        Debug.Log(scale);
+        //Debug.Log(scale);
         currentItem.transform.SetParent(itemPosition);
         currentItem.transform.localPosition = Vector3.zero;
         currentItem.transform.localRotation = Quaternion.identity;
@@ -46,42 +57,95 @@ public class Inventory : MonoBehaviour
 
     public void DropCurrentItem()
     {
-        if (currentItem == null || currentIndex == 0) return;
+        // Revisa si hay un objeto seleccionado y si no es el 'Empty Holder'
+        if (currentItem == null || currentIndex <= 0) return;
 
-        // Quitar del inventario
+        // Guarda el objeto actual para soltarlo
         GameObject itemToDrop = currentItem;
+
+        // Elimina el objeto de la lista
         inventoryList.RemoveAt(currentIndex);
 
-        // Reajustar �ndice
-        if (inventoryList.Count == 0)
-        {
-            currentIndex = 1;
-            currentItem = null;
-        }
-        else
-        {
-            currentIndex %= inventoryList.Count;
-            ShowItemAtIndex(currentIndex);
-        }
-
-        // Soltar en el mundo
-        // Vector3 worldScale = itemToDrop.transform.localScale;
+        // Desparenta y activa el objeto en el mundo
         itemToDrop.transform.SetParent(null);
-        itemToDrop.transform.localScale = scale;
+        itemToDrop.transform.localScale = scale; // Usa la escala que guardaste al recogerlo
         itemToDrop.SetActive(true);
         itemToDrop.transform.position = itemPosition.position;
         itemToDrop.transform.rotation = itemPosition.rotation;
 
-        // Reactivar f�sica
-        Collider col = itemToDrop.GetComponent<Collider>();
-        if (col != null) col.enabled = true;
+        // Reactiva las colisiones y la física
+        Collider[] colliders = GetComponents<Collider>();
+        foreach (Collider col in colliders)
+        {
+            col.enabled = true;
+        }
 
         Rigidbody rb = itemToDrop.GetComponent<Rigidbody>();
         if (rb != null)
         {
             rb.isKinematic = false;
-            rb.linearVelocity = Vector3.zero; // evitar arrastre raro
+            rb.linearVelocity = Vector3.zero;
         }
+
+        // AHORA ajusta el índice para seleccionar el siguiente objeto
+        if (inventoryList.Count > 1)
+        {
+            // El índice se ajusta automáticamente si no es el último elemento
+            // Si el índice es mayor o igual al nuevo tamaño de la lista,
+            // lo movemos al último elemento de la lista para evitar un error.
+            if (currentIndex >= inventoryList.Count)
+            {
+                currentIndex = inventoryList.Count - 1;
+            }
+
+            ShowItemAtIndex(currentIndex);
+        }
+        else
+        {
+            // Si solo queda el 'Empty Holder', selecciona ese
+            currentIndex = 0;
+            currentItem = inventoryList[0];
+            ShowItemAtIndex(currentIndex);
+            
+        }
+    }
+
+    public void PlaceCurrentItem(PlacementPoint placementPoint)
+    {
+        // Revisa si hay un ítem para colocar y si no es el empty holder.
+        if (currentItem == null || currentIndex <= 0) return;
+
+        // Obtener el componente Item del objeto actual
+        Item itemComponent = currentItem.GetComponent<Item>();
+        if (itemComponent == null) return;
+
+        // Obtener el tipo de ítem antes de colocarlo
+        ItemType placedItemType = itemComponent.Type;
+
+        // Eliminar el objeto del inventario.
+        GameObject itemToPlace = currentItem;
+        inventoryList.RemoveAt(currentIndex);
+
+        currentItem = null;
+
+        // Ajustar el índice y mostrar el siguiente ítem
+        if (inventoryList.Count > 1)
+        {
+            currentIndex = (currentIndex > inventoryList.Count - 1) ? inventoryList.Count - 1 : currentIndex;
+            ShowItemAtIndex(currentIndex);
+        }
+        else
+        {
+            currentIndex = 0;
+            currentItem = inventoryList[0];
+            ShowItemAtIndex(currentIndex);
+        }
+
+        // Llamar al método del punto de colocación, pasándole el ítem y su tipo.
+        // La lógica de validación se manejará dentro del PlacementPoint.
+        placementPoint.MarkAsFilled(itemToPlace, placedItemType);
+
+
     }
 
     void Update()
