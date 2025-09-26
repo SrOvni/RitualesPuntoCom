@@ -1,64 +1,9 @@
 fileFormatVersion: 2
-guid: 0e2d7a075227f574aba4d11c1e5d51ec
+guid: a5d3246df975d3444a4dde2f2d4ea0df
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: 10c5e9575788dec43bb29cfe88ffceb5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.001
-    second: {fileID: 2100000, guid: 10c5e9575788dec43bb29cfe88ffceb5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.002
-    second: {fileID: 2100000, guid: 10c5e9575788dec43bb29cfe88ffceb5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.003
-    second: {fileID: 2100000, guid: 10c5e9575788dec43bb29cfe88ffceb5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.004
-    second: {fileID: 2100000, guid: 10c5e9575788dec43bb29cfe88ffceb5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: PALITO_DE_VELA
-    second: {fileID: 2100000, guid: 10c5e9575788dec43bb29cfe88ffceb5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: VELA_BLANCA
-    second: {fileID: 2100000, guid: 10c5e9575788dec43bb29cfe88ffceb5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: VELA_NEGRA
-    second: {fileID: 2100000, guid: 10c5e9575788dec43bb29cfe88ffceb5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: microondas
-    second: {fileID: 2100000, guid: 10c5e9575788dec43bb29cfe88ffceb5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: paltoi
-    second: {fileID: 2100000, guid: 10c5e9575788dec43bb29cfe88ffceb5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: puerta_micro
-    second: {fileID: 2100000, guid: 10c5e9575788dec43bb29cfe88ffceb5, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
