@@ -12,24 +12,39 @@ public class PlayerInteractor : MonoBehaviour
     [Header("Input Actions")]
     [SerializeField] private InputActionReference interactAction;
     [SerializeField] private InputActionReference dropAction;
+    [SerializeField] private InputActionReference grabAction;
+
     private IInteractable currentTarget;
+    private IInteractable activeInteractable;
 
     void OnEnable()
     {
 
         interactAction.action.Enable();
         interactAction.action.performed += OnInteract;
+        interactAction.action.canceled += OnInteractCanceled;
+
+        grabAction.action.Enable();
+        grabAction.action.performed += OnGrab;
+        grabAction.action.canceled += OnGrabCanceled;
+
         dropAction.action.Enable();
         dropAction.action.performed += OnDrop;
     }
 
     void OnDisable()
     {
-        
-        dropAction.action.performed += OnDrop;
-        interactAction.action.performed -= OnInteract;
-        interactAction.action.Disable();
+
+        grabAction.action.performed -= OnGrab;
+        grabAction.action.canceled -= OnGrabCanceled;
+        grabAction.action.Disable();
+
+        dropAction.action.performed -= OnDrop;
         dropAction.action.Disable();
+
+        interactAction.action.performed -= OnInteract;
+        interactAction.action.canceled -= OnInteractCanceled;
+        interactAction.action.Disable();
     }
 
     private void Start()
@@ -46,7 +61,7 @@ public class PlayerInteractor : MonoBehaviour
 
             if (currentTarget != null)
             {
-                Debug.Log(currentTarget.GetInteractText());
+                //Debug.Log(currentTarget.GetInteractText());
                 // Aquí puedes mostrar un UI con ese texto
             }
         }
@@ -58,17 +73,45 @@ public class PlayerInteractor : MonoBehaviour
 
     private void OnInteract(InputAction.CallbackContext ctx)
     {
-        
-
-        if (currentTarget != null)
+        if (currentTarget != null && !(currentTarget is DoorController))
         {
             currentTarget.Interact(gameObject);
         }
     }
 
+    private void OnInteractCanceled(InputAction.CallbackContext callback)
+    {
+        Debug.Log("Dejando de interactuar");
+        if (activeInteractable is DoorController door)
+        {
+            door.StopInteraction();
+        }
+
+        activeInteractable = null;
+    }
+    private void OnGrab(InputAction.CallbackContext callback)
+    {
+        if (currentTarget is DoorController door && activeInteractable == null)
+        {
+            // Guardamos la puerta como el objeto activo
+            activeInteractable = door;
+            activeInteractable.Interact(gameObject); // Llama al Interact() de la puerta
+        }
+    }
+    private void OnGrabCanceled(InputAction.CallbackContext callback)
+    {
+        // Si el objeto que estamos agarrando es una puerta, la soltamos
+        if (activeInteractable is DoorController door)
+        {
+            door.StopInteraction();
+        }
+
+        
+        activeInteractable = null;
+    }
     private void OnDrop(InputAction.CallbackContext ctx)
     {
-        Debug.Log("Dropeando Objeto");
+        //Debug.Log("Dropeando Objeto");
         inventory.DropCurrentItem();
 
     }

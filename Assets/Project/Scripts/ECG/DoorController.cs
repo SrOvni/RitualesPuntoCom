@@ -59,61 +59,63 @@ public class DoorController : MonoBehaviour, IInteractable
             Debug.Log("Is being Held");
 
 
-            // Read mouse delta from the new Input System
-            Vector2 mouseDelta = mouseLookAction.action.ReadValue<Vector2>();
-
-            // We'll primarily use the vertical movement for push/pull
-            float mouseY = mouseDelta.y;
-            float mouseX = mouseDelta.x;
-
-            // Calculate the direction the player is pushing/pulling from
-            Vector3 playerViewPoint = playerCamera.position;
-            Vector3 doorPoint = rb.worldCenterOfMass; 
-
-            // The point where the player is "looking" at the door
-            RaycastHit hit;
-            if (Physics.Raycast(playerCamera.position, playerCamera.forward, out hit, 5f))
-            {
-                if (hit.rigidbody == rb)
-                {
-                    doorPoint = hit.point;
-                }
-            }
-
-            // Apply force based on vertical mouse movement
-            Vector3 forceDirection = playerCamera.forward;
-
-            Vector3 sideDirection = playerCamera.right * mouseX;
-            // Calcular la dirección de empuje/tirón (hacia adelante/atrás)
-            Vector3 pushDirection = playerCamera.forward * mouseY;
-
-            // Combinar ambas direcciones para un control más completo
-            Vector3 totalForceDirection = (pushDirection + sideDirection).normalized;
-
-            rb.AddForceAtPosition(forceDirection * mouseX * openSpeed * Time.fixedDeltaTime, doorPoint, ForceMode.Force);
-
-
-
-
-
-            //// Leer el delta del mouse desde el nuevo Input System
+            //// Read mouse delta from the new Input System
             //Vector2 mouseDelta = mouseLookAction.action.ReadValue<Vector2>();
 
-            //// Usaremos SOLAMENTE el movimiento horizontal del mouse (mouseX)
+            //// We'll primarily use the vertical movement for push/pull
+            //float mouseY = mouseDelta.y;
             //float mouseX = mouseDelta.x;
 
-            //// Para que el control se sienta intuitivo, necesitamos saber de qué lado de la puerta está el jugador.
-            //// Usamos el producto punto (Dot Product) para esto.
-            //Vector3 doorForward = transform.forward; // La dirección "hacia afuera" de la puerta
-            //Vector3 playerDirection = (playerCamera.position - transform.position).normalized;
+            //// Calculate the direction the player is pushing/pulling from
+            //Vector3 playerViewPoint = playerCamera.position;
+            //Vector3 doorPoint = rb.worldCenterOfMass; 
 
-            //// Si el producto punto es positivo, el jugador está en frente. Si es negativo, está detrás.
-            //// Esto nos permite invertir el control para que siempre se sienta natural.
-            //float dot = Vector3.Dot(doorForward, playerDirection);
+            //// The point where the player is "looking" at the door
+            //RaycastHit hit;
+            //if (Physics.Raycast(playerCamera.position, playerCamera.forward, out hit, 5f))
+            //{
+            //    if (hit.rigidbody == rb)
+            //    {
+            //        doorPoint = hit.point;
+            //    }
+            //}
 
-            //// Aplicamos una fuerza de rotación (Torque) alrededor del eje Y (transform.up)
-            //// Multiplicamos por el signo del producto punto para que el control se invierta correctamente.
-            //rb.AddTorque(transform.up * -mouseX * sensitivity * Mathf.Sign(dot), ForceMode.VelocityChange);
+            //// Apply force based on vertical mouse movement
+            //Vector3 forceDirection = playerCamera.forward;
+
+            //Vector3 sideDirection = playerCamera.right * mouseX;
+            //// Calcular la dirección de empuje/tirón (hacia adelante/atrás)
+            //Vector3 pushDirection = playerCamera.forward * mouseY;
+
+            //// Combinar ambas direcciones para un control más completo
+            //Vector3 totalForceDirection = (pushDirection + sideDirection).normalized;
+
+            //rb.AddForceAtPosition(forceDirection * mouseX * openSpeed * Time.fixedDeltaTime, doorPoint, ForceMode.Force);
+
+
+
+
+
+            // Leer el delta del mouse desde el nuevo Input System
+            Vector2 mouseDelta = mouseLookAction.action.ReadValue<Vector2>();
+
+            // Usaremos SOLAMENTE el movimiento horizontal del mouse (mouseX)
+            float mouseX = mouseDelta.x;
+
+            Vector3 rotationAxis = transform.forward;
+
+            // Para que el control se sienta intuitivo, necesitamos saber de qué lado de la puerta está el jugador.
+            // Usamos el producto punto (Dot Product) para esto.
+            Vector3 doorForward = transform.forward; // La dirección "hacia afuera" de la puerta
+            Vector3 playerDirection = (playerCamera.position - transform.position).normalized;
+
+            // Si el producto punto es positivo, el jugador está en frente. Si es negativo, está detrás.
+            // Esto nos permite invertir el control para que siempre se sienta natural.
+            float dot = Vector3.Dot(doorForward, playerDirection);
+
+            // Aplicamos una fuerza de rotación (Torque) alrededor del eje Y (transform.up)
+            // Multiplicamos por el signo del producto punto para que el control se invierta correctamente.
+            rb.AddTorque(rotationAxis * mouseX * sensitivity * Mathf.Sign(dot), ForceMode.VelocityChange);
         }
     }
 }
