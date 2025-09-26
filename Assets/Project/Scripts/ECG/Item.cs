@@ -11,6 +11,8 @@ public class Item : MonoBehaviour, IInteractable
 {
     [SerializeField] private string interactText = "Pickup";
     [SerializeField] private ItemType itemType = ItemType.None;
+    Rigidbody Rb;
+    // [SerializeField] private string interactText = "Recoger";
 
     public ItemType Type => itemType;
     public string GetInteractText()

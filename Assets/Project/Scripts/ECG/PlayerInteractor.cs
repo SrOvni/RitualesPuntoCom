@@ -17,6 +17,7 @@ public class PlayerInteractor : MonoBehaviour
     private IInteractable currentTarget;
     private IInteractable activeInteractable;
 
+
     void OnEnable()
     {
 
@@ -34,7 +35,6 @@ public class PlayerInteractor : MonoBehaviour
 
     void OnDisable()
     {
-
         grabAction.action.performed -= OnGrab;
         grabAction.action.canceled -= OnGrabCanceled;
         grabAction.action.Disable();
@@ -57,23 +57,26 @@ public class PlayerInteractor : MonoBehaviour
         Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f));
         if (Physics.Raycast(ray, out RaycastHit hit, interactDistance, interactLayer))
         {
-            currentTarget = hit.collider.GetComponent<IInteractable>();
-
-            if (currentTarget != null)
+            if (currentTarget == null)
             {
-                //Debug.Log(currentTarget.GetInteractText());
-                // Aquí puedes mostrar un UI con ese texto
+                CrosshairManager.Instance.TurnOn();
+                currentTarget = hit.collider.GetComponent<IInteractable>();
+                Debug.Log(currentTarget.GetInteractText());
             }
         }
         else
         {
-            currentTarget = null;
+            if (currentTarget != null)
+                {
+                    CrosshairManager.Instance.TurnOff();
+                    currentTarget = null;
+                }
         }
     }
 
     private void OnInteract(InputAction.CallbackContext ctx)
     {
-        if (currentTarget != null && !(currentTarget is DoorController))
+        if (currentTarget != null)
         {
             currentTarget.Interact(gameObject);
         }
@@ -114,6 +117,11 @@ public class PlayerInteractor : MonoBehaviour
         //Debug.Log("Dropeando Objeto");
         inventory.DropCurrentItem();
 
+    }
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.coral;
+        Gizmos.DrawRay(cam.ViewportPointToRay(new Vector3(0.5f, 0.5f)));
     }
 
 }
