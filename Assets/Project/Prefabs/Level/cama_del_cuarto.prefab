@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6130960726311775706}
   - component: {fileID: 1465511916697838339}
   - component: {fileID: 2409113261372464053}
+  - component: {fileID: 9215334887865755188}
   m_Layer: 0
   m_Name: cama_del_cuarto
   m_TagString: Untagged
@@ -89,3 +90,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &9215334887865755188
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6037927602561796171}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1010716, y: 0.792261, z: 2.03368}
+  m_Center: {x: 0.011304498, y: 0.024221897, z: 0.14993453}
