@@ -1174,6 +1174,10 @@ PrefabInstance:
       propertyPath: 'startingAudio.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: 62c3d9e7b6dc3ac449891dfb0b25841d, type: 2}
+    - target: {fileID: 1058278096065365613, guid: 3ea60bffc0fe4be44888b893f5fcf1ae, type: 3}
+      propertyPath: grabAction
+      value: 
+      objectReference: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     - target: {fileID: 2043895556303941364, guid: 3ea60bffc0fe4be44888b893f5fcf1ae, type: 3}
       propertyPath: m_LocalPosition.x
       value: -27.71
