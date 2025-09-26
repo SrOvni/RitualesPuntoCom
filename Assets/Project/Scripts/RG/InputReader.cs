@@ -13,7 +13,14 @@ public class InputReader : ScriptableObject, IPlayerActions
 
     public Vector2 LookDirection => _inputActions.Player.Look.ReadValue<Vector2>();
 
-    
+    public void DisableMovementInputs()
+    {
+        _inputActions.Player.Disable();
+    }
+    public void EnableMovmentInput()
+    {
+        _inputActions.Player.Enable();
+    }
 
     public event Action Attack = delegate
     {

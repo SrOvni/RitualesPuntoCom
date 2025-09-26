@@ -484,7 +484,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2043895556303941364}
   - component: {fileID: 1039997710353773791}
-  - component: {fileID: 2569763217080508223}
   - component: {fileID: 2767384013932797126}
   - component: {fileID: 6762217695558176393}
   - component: {fileID: 1058278096065365613}
@@ -532,24 +531,8 @@ MonoBehaviour:
   minVerticalAngle: -80
   maxVerticalAngle: 80
   input: {fileID: 11400000, guid: ae991d9669c1eef478c09790ff529d02, type: 2}
+  characterController: {fileID: 0}
   startingAudio: []
---- !u!114 &2569763217080508223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8785025421220426293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9f6831356f95484eaac11e02a69b55a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: RG.Systems.Tests.Player::RG.Systems.Tests.Player.GroundCheck
-  _groundLayers:
-    serializedVersion: 2
-    m_Bits: 64
-  _sphereRadius: 0.18
-  _yAxisOffset: -0.84
 --- !u!114 &2767384013932797126
 MonoBehaviour:
   m_ObjectHideFlags: 0
