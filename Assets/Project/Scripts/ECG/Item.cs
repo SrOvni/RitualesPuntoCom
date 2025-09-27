@@ -6,10 +6,14 @@ public enum ItemType
     Candle,
     Book,
     Key,
+    WhiteCandle,
+    BlackCandle,
+    Flowers,
+    Picture,
     Coin,
     Computer
 }
-public class Item : MonoBehaviour, IInteractable
+public class Item : MonoBehaviour, IInteractable 
 {
     [SerializeField] private string interactText = "Pickup";
     [SerializeField] private ItemType itemType = ItemType.None;

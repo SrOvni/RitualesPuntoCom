@@ -5,6 +5,7 @@ public class DoorController : MonoBehaviour, IInteractable
 {
     [Header("Door Settings")]
     [SerializeField] private float sensitivity = 1.5f;
+    [SerializeField] private bool inverseDoor;
     [SerializeField] private InputActionReference mouseLookAction;
 
     private Rigidbody rb;
@@ -63,6 +64,10 @@ public class DoorController : MonoBehaviour, IInteractable
             Vector2 mouseDelta = mouseLookAction.action.ReadValue<Vector2>();
             float mouseX = mouseDelta.x;
 
+            if (inverseDoor)
+            {
+                mouseX = mouseX * -1;
+            }
             // El eje de rotación (la bisagra) es el eje Z local
             Vector3 rotationAxis = transform.up;
 

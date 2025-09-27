@@ -24,6 +24,11 @@ public class Inventory : MonoBehaviour
         currentIndex = 0;
         currentItem = emptyholder;
     }
+
+    public GameObject GetCurrentItem()
+    {
+        return currentItem;
+    }
     public void AddItem(GameObject item)
     {
         // A�adir item a la lista
@@ -72,13 +77,15 @@ public class Inventory : MonoBehaviour
 
         // Desparenta y activa el objeto en el mundo
         itemToDrop.transform.SetParent(null);
-        //itemToDrop.transform.localScale = scale; // Usa la escala que guardaste al recogerlo
+
+        //aitemToDrop.transform.localScale = scale; // Usa la escala que guardaste al recogerlo
         itemToDrop.SetActive(true);
         itemToDrop.transform.position = itemPosition.position;
         itemToDrop.transform.rotation = itemPosition.rotation;
 
         // Reactiva las colisiones y la física
-        Collider[] colliders = GetComponents<Collider>();
+        Collider[] colliders = itemToDrop.GetComponents<Collider>();
+
         foreach (Collider col in colliders)
         {
             col.enabled = true;
@@ -88,6 +95,7 @@ public class Inventory : MonoBehaviour
         if (rb != null)
         {
             rb.isKinematic = false;
+            rb.useGravity = true;
             rb.linearVelocity = Vector3.zero;
         }
 
@@ -128,6 +136,7 @@ public class Inventory : MonoBehaviour
 
         // Eliminar el objeto del inventario.
         GameObject itemToPlace = currentItem;
+
         inventoryList.RemoveAt(currentIndex);
 
         currentItem = null;

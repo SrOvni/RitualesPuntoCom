@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6577658105735337201}
   - component: {fileID: 3252498727866906159}
   - component: {fileID: 7003912905022734833}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: vela_oscura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
