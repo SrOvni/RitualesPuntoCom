@@ -42,7 +42,7 @@ public class DoorController : MonoBehaviour, IInteractable
 
         // Calculamos de qué lado de la puerta está el jugador UNA SOLA VEZ.
 
-        Vector3 doorFaceDirection = transform.up;
+        Vector3 doorFaceDirection = transform.forward;
         Vector3 playerDirection = (playerCamera.position - transform.position).normalized;
 
         float dot = Vector3.Dot(doorFaceDirection, playerDirection);
@@ -64,7 +64,7 @@ public class DoorController : MonoBehaviour, IInteractable
             float mouseX = mouseDelta.x;
 
             // El eje de rotación (la bisagra) es el eje Z local
-            Vector3 rotationAxis = transform.forward;
+            Vector3 rotationAxis = transform.up;
 
             
             rb.AddTorque(rotationAxis * mouseX * sensitivity * interactionSide, ForceMode.VelocityChange);
