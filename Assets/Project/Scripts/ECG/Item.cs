@@ -2,10 +2,10 @@ using UnityEngine;
 public enum ItemType
 {
     None,
-    Skull,
-    Candle,
-    Book,
-    Key
+    WhiteCandle,
+    BlackCandle,
+    Flowers,
+    Picture,
 }
 public class Item : MonoBehaviour, IInteractable
 {
