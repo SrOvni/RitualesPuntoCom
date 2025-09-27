@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private float horseDreamDuration;
     [SerializeField] private bool fakeRitualWasBought;
+    public bool FakeRitualWasBought { get => fakeRitualWasBought; set => fakeRitualWasBought = value; }
     [SerializeField] private bool realRitualWasBought;
     [SerializeField] private bool playerAte;
     [SerializeField] private bool ritualIsInsideTheHouse;
@@ -17,16 +19,24 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        StartCoroutine(FirstDay());
+        StartCoroutine(HorseDream());
     }
 
+    public void Log()
+    {
+        Debug.Log("Funciona el boton");
+    }
+    public IEnumerator HorseDream()
+    {
+        yield return new WaitForSeconds(horseDreamDuration);
+    }
     public IEnumerator FirstDay()
     {
         //Sueño
         //Ingresa moneda
         //Sube al caballo
         //Luz se apaga - 5s
-        yield return new WaitForSeconds(horseDreamDuration);
+        
         //Despierta en su cuarto
         yield return new WaitUntil(() => fakeRitualWasBought);
         //Desbloquear puerta de su cuarto
