@@ -3,7 +3,7 @@ using UnityEngine;
 public class RitualManager : MonoBehaviour
 {
     [SerializeField] private PlacementPoint[] ritualPoints;
-    [SerializeField] private int totalRitualSteps = 4; // Solo los items que se Usan
+    [SerializeField] private int totalRitualSteps = 1; // Solo los items que se Usan
 
     private int completedSteps = 0;
     private bool isRitualCompleted = false;

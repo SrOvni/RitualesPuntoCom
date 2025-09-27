@@ -7,6 +7,7 @@ public class PlacementPoint : MonoBehaviour, IInteractable
 
     [Header("Ritual Config")]
     [SerializeField] private ItemType requiredItemType;
+    [SerializeField] private bool isPartOfRitual = true;
     public bool IsFilled { get; private set; } = false;
     public bool IsValidPlacement { get; private set; } = false;
 
@@ -81,10 +82,13 @@ public class PlacementPoint : MonoBehaviour, IInteractable
             rb.linearVelocity = Vector3.zero;
         }
 
-        // Aquí puedes agregar lógica visual o de sonido basada en IsValidPlacement
-        if (IsValidPlacement)
+        if (IsValidPlacement && isPartOfRitual)
         {
-            Debug.Log($"¡Colocación válida! Se colocó un {placedItemType} en un punto que requería un {requiredItemType}.");
+            RitualManager ritualManager = FindAnyObjectByType<RitualManager>(); 
+            if (ritualManager != null)
+            {
+                ritualManager.MarkPlacementStepComplete();
+            }
         }
         else
         {
