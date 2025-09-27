@@ -16,8 +16,8 @@ public class Computadora : Interactable
     public override Action<RaycastHit, InteractionHandler> OnInteract { get; set; } = delegate { };
     public override Action OnInteractionStop { get; set; } = delegate { };
     public override Action<RaycastHit, InteractionHandler> OnInteractionPerformed { get; set; } = delegate { };
-
-    // [SerializeField] RectTransform computerCursor;
+    [SerializeField] ItemType type;
+    public override ItemType Type => type;
 
     [SerializeField] InputReader inputReader;
     [SerializeField] LayerMask computerScreenLayerMask;

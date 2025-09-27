@@ -7,7 +7,7 @@ public abstract class Interactable: MonoBehaviour, IInteractable
     public abstract Action<RaycastHit, InteractionHandler> OnInteract { get; set; }
     public abstract Action OnInteractionStop { get; set; }
     public abstract Action<RaycastHit, InteractionHandler> OnInteractionPerformed { get; set; }
-
+    public abstract ItemType Type { get; }
     public abstract string GetInteractText();
 
     public void Interact(RaycastHit hit, InteractionHandler interactor)

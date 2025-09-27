@@ -5,7 +5,9 @@ public enum ItemType
     Skull,
     Candle,
     Book,
-    Key
+    Key,
+    Coin,
+    Computer
 }
 public class Item : MonoBehaviour, IInteractable
 {

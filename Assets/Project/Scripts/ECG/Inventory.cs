@@ -8,11 +8,13 @@ public class Inventory : MonoBehaviour
     [Header("Inventory Config")]
     [SerializeField] Transform itemPosition;
     [SerializeField] List<GameObject> inventoryList = new List<GameObject>();
+    public List<GameObject> InvetoryList => inventoryList;
 
     Vector3 scale;
 
     private int currentIndex = -1;
-    private GameObject currentItem;
+    [SerializeField] private GameObject currentItem;
+    public GameObject CurrentItem => currentItem;
 
     private void Start()
     {

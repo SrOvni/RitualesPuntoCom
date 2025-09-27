@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
@@ -19,7 +20,6 @@ public class GameManager : Singleton<GameManager>
 
     void Awake()
     {
-        StartCoroutine(HorseDream());
     }
 
     public void Log()
@@ -29,6 +29,7 @@ public class GameManager : Singleton<GameManager>
     public IEnumerator HorseDream()
     {
         yield return new WaitForSeconds(horseDreamDuration);
+        SceneManager.LoadScene(1);
     }
     public IEnumerator FirstDay()
     {
