@@ -13,6 +13,7 @@ public class PlayerInteractor : MonoBehaviour
     [SerializeField] private InputActionReference interactAction;
     [SerializeField] private InputActionReference dropAction;
     [SerializeField] private InputActionReference grabAction;
+    [SerializeField] private InputActionReference useAction;
 
     private IInteractable currentTarget;
     private IInteractable activeInteractable;
@@ -31,6 +32,9 @@ public class PlayerInteractor : MonoBehaviour
 
         dropAction.action.Enable();
         dropAction.action.performed += OnDrop;
+
+        useAction.action.Enable();
+        useAction.action.performed += OnUse;
     }
 
     void OnDisable()
@@ -45,6 +49,9 @@ public class PlayerInteractor : MonoBehaviour
         interactAction.action.performed -= OnInteract;
         interactAction.action.canceled -= OnInteractCanceled;
         interactAction.action.Disable();
+
+        useAction.action.performed -= OnUse;
+        useAction.action.Disable();
     }
 
     private void Start()
@@ -117,6 +124,24 @@ public class PlayerInteractor : MonoBehaviour
         //Debug.Log("Dropeando Objeto");
         inventory.DropCurrentItem();
 
+    }
+
+    private void OnUse(InputAction.CallbackContext ctx)
+    {
+        // Get the currently selected item from the inventory.
+        GameObject currentItem = inventory.GetCurrentItem(); 
+
+        // Check if the item can be used.
+        IUsable usableItem = currentItem.GetComponent<IUsable>();
+        if (usableItem != null)
+        {
+            // Call the Use method on the item.
+            usableItem.Use(gameObject);
+        }
+        else
+        {
+            Debug.Log("Current item is not usable.");
+        }
     }
     void OnDrawGizmos()
     {

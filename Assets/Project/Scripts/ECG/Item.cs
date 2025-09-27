@@ -7,7 +7,7 @@ public enum ItemType
     Flowers,
     Picture,
 }
-public class Item : MonoBehaviour, IInteractable
+public class Item : MonoBehaviour, IInteractable 
 {
     [SerializeField] private string interactText = "Pickup";
     [SerializeField] private ItemType itemType = ItemType.None;
