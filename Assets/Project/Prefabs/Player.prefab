@@ -696,6 +696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Inventory
   itemPosition: {fileID: 8928862615167447406}
   inventoryList: []
+  currentItem: {fileID: 0}
 --- !u!114 &1058278096065365613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -716,6 +717,7 @@ MonoBehaviour:
   interactAction: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   dropAction: {fileID: -6308639583839575647, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   grabAction: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  useAction: {fileID: 4790130352328012816, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!143 &7273236313430091258
 CharacterController:
   m_ObjectHideFlags: 0

@@ -52,7 +52,23 @@ public class Inventory : MonoBehaviour
         ShowItemAtIndex(currentIndex);
         ParentItem(currentIndex);
     }
+    public void DeleteItem(GameObject item)
+    {
+        // First, check if the item is in the list
+        if (inventoryList.Contains(item))
+        {
+            // Remove the item from the list
+            inventoryList.Remove(item);
+            Debug.Log($"Item {item.name} has been deleted from inventory.");
 
+            // Destroy the item GameObject
+            Destroy(item);
+        }
+        else
+        {
+            Debug.LogWarning("Tried to delete an item that wasn't in the inventory.");
+        }
+    }
     private void ParentItem(int currentIndex)
     {
         scale = currentItem.transform.lossyScale;

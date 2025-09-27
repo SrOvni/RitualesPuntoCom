@@ -15,8 +15,8 @@ public enum ItemType
 }
 public class Item : MonoBehaviour, IInteractable 
 {
-    [SerializeField] private string interactText = "Pickup";
-    [SerializeField] private ItemType itemType = ItemType.None;
+    [SerializeField] protected string interactText = "Pickup";
+    [SerializeField] protected ItemType itemType = ItemType.None;
     Rigidbody Rb;
     // [SerializeField] private string interactText = "Recoger";
 

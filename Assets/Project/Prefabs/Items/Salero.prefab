@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4428838336895753218}
   - component: {fileID: 118343394719339070}
   - component: {fileID: 5589724852472613151}
-  - component: {fileID: 2111730443107335507}
   - component: {fileID: 1335817018646933695}
   - component: {fileID: 3315744841831953451}
+  - component: {fileID: -4938297053416402916}
   m_Layer: 3
   m_Name: Salero
   m_TagString: Untagged
@@ -92,20 +92,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2111730443107335507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8303962007134516844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a05420530e87794ca7558168e2f6f41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Item
-  interactText: Pickup
-  itemType: 0
 --- !u!65 &1335817018646933695
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -154,3 +140,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-4938297053416402916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8303962007134516844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf43f4fb3248b1343ae2d62f4c4494d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sal
+  interactText: Pickup
+  itemType: 0
+  saltCirclePrefab: {fileID: 21285594757699937, guid: a9a5464634fad134abd6c5dac943d1c2, type: 3}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1

@@ -78,8 +78,9 @@ public class PlacementPoint : MonoBehaviour, IInteractable
         Rigidbody rb = item.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.isKinematic = true;
             rb.linearVelocity = Vector3.zero;
+            rb.isKinematic = true;
+            
         }
 
         if (IsValidPlacement && isPartOfRitual)

@@ -116,6 +116,10 @@ public class InputReader : ScriptableObject, IPlayerActions
     {
 
     }
+    public void OnUse(InputAction.CallbackContext context)
+    {
+
+    }
 
     private void OnDisable()
     {
