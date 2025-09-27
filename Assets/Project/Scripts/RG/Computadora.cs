@@ -1,4 +1,7 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -72,10 +75,17 @@ public class Computadora : Interactable
     }
     public new void Interact(RaycastHit hit, InteractionHandler interactor)
     {
-        TurnOn();
         CameraManager.Instance.PrioritizeComputerCamera();
+
+        StartCoroutine(TurnOnScreenWhenBlend());
         inputReader.DisableMovementInputs();
         // Cursor.lockState = CursorLockMode.Confined;
         // Cursor.visible = true;
+    }
+
+    public IEnumerator TurnOnScreenWhenBlend()
+    {
+        yield return new WaitForSeconds(CameraManager.Instance.Brain.DefaultBlend.Time);
+        TurnOn();
     }
 }
