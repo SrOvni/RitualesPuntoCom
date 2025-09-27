@@ -154,7 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Sal
   interactText: Pickup
   itemType: 0
-  saltCirclePrefab: {fileID: 21285594757699937, guid: a9a5464634fad134abd6c5dac943d1c2, type: 3}
+  saltCirclePrefab: {fileID: 6198396176766482344, guid: 39be3f13c40e2f74ca68d2833d71e186, type: 3}
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
+  spawnOffset: 0.05

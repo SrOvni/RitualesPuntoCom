@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
   interactText: Pickup
-  itemType: 4
+  itemType: 8
 --- !u!1 &4217835298828894388
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
   interactText: Pickup
-  itemType: 4
+  itemType: 8
 --- !u!65 &2354152981157291650
 BoxCollider:
   m_ObjectHideFlags: 0

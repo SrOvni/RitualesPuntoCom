@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
   interactText: Pickup
-  itemType: 2
+  itemType: 5
 --- !u!54 &2222335512441051595
 Rigidbody:
   m_ObjectHideFlags: 0

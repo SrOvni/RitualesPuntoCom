@@ -1,8 +1,9 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RitualManager : MonoBehaviour
 {
-    [SerializeField] private PlacementPoint[] ritualPoints;
+    [SerializeField] private List<PlacementPoint> ritualPoints = new List<PlacementPoint>();
     [SerializeField] private int totalRitualSteps = 1; // Solo los items que se Usan
 
     private int completedSteps = 0;
@@ -44,6 +45,18 @@ public class RitualManager : MonoBehaviour
         }
     }
 
+    public void AddRitualPoints(GameObject ritual)
+    {
+        // 1. Encuentra todos los componentes PlacementPoint en el objeto y sus hijos
+        PlacementPoint[] points = ritual.GetComponentsInChildren<PlacementPoint>();
+
+        // 2. Itera sobre los puntos encontrados y agrégalos a tu lista principal
+        foreach (PlacementPoint point in points)
+        {
+            ritualPoints.Add(point);
+            Debug.Log($"Punto de colocación '{point.name}' agregado al ritual.");
+        }
+    }
 
     private void OnRitualComplete()
     {
