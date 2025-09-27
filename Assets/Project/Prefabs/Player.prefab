@@ -526,6 +526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6b70ba9d25195419f2f7305ea07b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  playerCamera: {fileID: 0}
   moveSpeed: 1
   mouseSensitivity: 0.5
   minVerticalAngle: -80
@@ -584,6 +585,7 @@ MonoBehaviour:
     m_Bits: 8
   interactAction: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   dropAction: {fileID: -6308639583839575647, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  grabAction: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!143 &7273236313430091258
 CharacterController:
   m_ObjectHideFlags: 0
