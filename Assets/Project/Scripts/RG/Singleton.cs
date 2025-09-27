@@ -10,7 +10,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : Component
             if (_instance == null)
             {
                 _instance = FindAnyObjectByType<T>();
-                if(_instance == null)
+                if (_instance == null)
                     _instance = new GameObject(typeof(T).Name + "Singleton Auto-Generated").AddComponent<T>();
             }
             return _instance;
