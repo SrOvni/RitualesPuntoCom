@@ -64,8 +64,9 @@ public class PlacementPoint : MonoBehaviour, IInteractable
         IsValidPlacement = (placedItemType == requiredItemType);
 
 
-
-        item.transform.SetParent(transform);
+        //Vector3 itemScale = item.transform.lossyScale;
+        item.transform.SetParent(transform, true);
+       // item.transform.localScale = itemScale;
         item.transform.position = transform.position;
         item.transform.rotation = transform.rotation;
 
@@ -76,7 +77,7 @@ public class PlacementPoint : MonoBehaviour, IInteractable
         }
 
         Rigidbody rb = item.GetComponent<Rigidbody>();
-        if (rb != null)
+        if (rb != null && !rb.isKinematic)
         {
             rb.linearVelocity = Vector3.zero;
             rb.isKinematic = true;
