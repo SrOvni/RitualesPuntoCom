@@ -19,6 +19,18 @@ public class Item : MonoBehaviour, IInteractable
     [SerializeField] protected ItemType itemType = ItemType.None;
     Rigidbody Rb;
     // [SerializeField] private string interactText = "Recoger";
+    private void Awake()
+    {
+        
+        InventoryAnimation anim = GetComponent<InventoryAnimation>();
+
+        
+        if (anim == null)
+        {
+            anim = gameObject.AddComponent<InventoryAnimation>();
+            
+        }
+    }
 
     public ItemType Type => itemType;
     public string GetInteractText()

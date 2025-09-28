@@ -173,6 +173,10 @@ PrefabInstance:
       propertyPath: requiredItemType
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1125976689768089425, guid: d4f710be1535381418534030a866ce82, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1349648691381699306, guid: d4f710be1535381418534030a866ce82, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

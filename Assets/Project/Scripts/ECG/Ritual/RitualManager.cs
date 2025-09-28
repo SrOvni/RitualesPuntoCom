@@ -54,7 +54,7 @@ public class RitualManager : MonoBehaviour
         foreach (PlacementPoint point in points)
         {
             ritualPoints.Add(point);
-            Debug.Log($"Punto de colocación '{point.name}' agregado al ritual.");
+            //Debug.Log($"Punto de colocación '{point.name}' agregado al ritual.");
         }
     }
 
