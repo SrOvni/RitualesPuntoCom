@@ -10,6 +10,9 @@ public class Inventory : MonoBehaviour
     [SerializeField] List<GameObject> inventoryList = new List<GameObject>();
     public List<GameObject> InvetoryList => inventoryList;
 
+    [Header("Audio")]
+    [SerializeField] AudioData pickupItemAudio;
+
     Vector3 scale;
 
     private int currentIndex = -1;
@@ -47,9 +50,19 @@ public class Inventory : MonoBehaviour
         // Si es el primer item, seleccionarlo
 
         currentIndex = inventoryList.Count - 1;
+        AudioPlayer audioPlayer = FindAnyObjectByType<AudioPlayer>();
+
+        if (audioPlayer != null && pickupItemAudio != null) 
+        {
+            audioPlayer.Play(pickupItemAudio);
+        }
+        else
+        {
+            Debug.Log($"No se pudo reproducir el audio {pickupItemAudio} en {audioPlayer} ");
+        }
 
 
-        ShowItemAtIndex(currentIndex);
+            ShowItemAtIndex(currentIndex);
         ParentItem(currentIndex);
     }
     public void DeleteItem(GameObject item)
@@ -94,7 +107,7 @@ public class Inventory : MonoBehaviour
         // Desparenta y activa el objeto en el mundo
         itemToDrop.transform.SetParent(null);
 
-        //aitemToDrop.transform.localScale = scale; // Usa la escala que guardaste al recogerlo
+        itemToDrop.transform.localScale = scale; // Usa la escala que guardaste al recogerlo
         itemToDrop.SetActive(true);
         itemToDrop.transform.position = itemPosition.position;
         itemToDrop.transform.rotation = itemPosition.rotation;

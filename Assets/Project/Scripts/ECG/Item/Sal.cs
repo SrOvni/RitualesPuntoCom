@@ -5,6 +5,7 @@ public class Sal : Item, IUsable
     [SerializeField] private GameObject saltCirclePrefab;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float spawnOffset = 0.05f;
+    [SerializeField] AudioData salDropAudio;
     public void Use(GameObject user)
     {
         GameObject instantiatedCircle = null;
@@ -26,8 +27,19 @@ public class Sal : Item, IUsable
             }
         }
 
-        
-        RitualManager ritualManager = FindAnyObjectByType<RitualManager>();
+        
+        AudioPlayer audioPlayer = FindAnyObjectByType<AudioPlayer>();
+
+        if (audioPlayer != null && salDropAudio != null)
+        {
+            audioPlayer.Play(salDropAudio);
+        }
+        else
+        {
+            Debug.Log($"No se pudo reproducir el audio {salDropAudio} en {audioPlayer} ");
+        }
+
+        RitualManager ritualManager = FindAnyObjectByType<RitualManager>();
         if (ritualManager != null && instantiatedCircle != null)
         {
             // Llama al nuevo método para agregar los puntos al gestor

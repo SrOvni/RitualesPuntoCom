@@ -2887,6 +2887,50 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1 &1736961745
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1736961747}
+  - component: {fileID: 1736961746}
+  m_Layer: 0
+  m_Name: Audiomanager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1736961746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736961745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53312472a3a44ea49a995223a64e9f4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioPlayer
+--- !u!4 &1736961747
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736961745}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -26.92891, y: 6.96491, z: -12.02135}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1824300339
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4229,6 +4273,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6762217695558176393, guid: 3ea60bffc0fe4be44888b893f5fcf1ae, type: 3}
+      propertyPath: pickupItemAudio
+      value: 
+      objectReference: {fileID: 11400000, guid: a104e98dd84b25945bb15178450060d9, type: 2}
     - target: {fileID: 7273236313430091258, guid: 3ea60bffc0fe4be44888b893f5fcf1ae, type: 3}
       propertyPath: m_Height
       value: 1.63
@@ -5113,3 +5161,4 @@ SceneRoots:
   - {fileID: 8200988537198767403}
   - {fileID: 146546978}
   - {fileID: 1270587286}
+  - {fileID: 1736961747}
