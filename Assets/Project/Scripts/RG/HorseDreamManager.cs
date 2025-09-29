@@ -13,6 +13,7 @@ public class HorseDreamManager : Singleton<HorseDreamManager>
     [SerializeField] CinemachineCamera horseCamera;
     [SerializeField] private AudioData MetalHorseAudio;
     GameObject metalHorseGameobject;
+    [SerializeField] CinemachineBrain brain;
 
     private void Start()
     {
@@ -35,6 +36,12 @@ public class HorseDreamManager : Singleton<HorseDreamManager>
         rt.anchorMax = new Vector2(0.5f, 0.5f);
         rt.pivot = new Vector2(0.5f, 0.5f);
         rt.anchoredPosition = Vector2.zero;
+        rt.anchorMin = new Vector2(1f, 1f);
+        rt.anchorMax = new Vector2(1f, 1f);
+        rt.pivot = new Vector2(1f, 1f);
+
+        // Posición con respecto a la esquina
+        rt.anchoredPosition = new Vector2(-20f, -20f);
 
         // 4. Crear Background e Fill Area (requerido por el Slider)
         GameObject background = new GameObject("Background");
@@ -65,8 +72,9 @@ public class HorseDreamManager : Singleton<HorseDreamManager>
     }
     public IEnumerator HorseDream()
     {
+        Debug.Log("Horse dream starts");
         horseCamera.Prioritize();
-        yield return new WaitForSeconds(Camera.main.GetComponent<CinemachineBrain>().ActiveBlend.Duration);
+        yield return new WaitForSeconds(brain.DefaultBlend.Time);
         progressSlider.gameObject.SetActive(true);
         horseDreamTimer.Start();
         AudioPlayer.Instance.Play(MetalHorseAudio);
