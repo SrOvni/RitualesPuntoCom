@@ -29,7 +29,14 @@ public class Blade : Item, IUsable
         Inventory inventory = user.GetComponent<Inventory>();
         if (inventory != null)
         {
+<<<<<<< Updated upstream
             inventory.DeleteItem(this.gameObject);
+=======
+            // Mover el efecto a la posición actual del usuario antes de reproducirlo
+            instantiatedParticles.transform.position = user.transform.position;
+            instantiatedParticles.transform.rotation = user.transform.rotation;
+            instantiatedParticles.Play();
+>>>>>>> Stashed changes
         }
     }
 }
