@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Interactable: MonoBehaviour, IInteractable
 {
+    public abstract bool CanInteract { get; set; }
     public abstract Action<RaycastHit, InteractionHandler> OnInteract { get; set; }
     public abstract Action OnInteractionStop { get; set; }
     public abstract Action<RaycastHit, InteractionHandler> OnInteractionPerformed { get; set; }

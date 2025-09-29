@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,14 +13,13 @@ public partial class InteractionHandler : MonoBehaviour
     [SerializeField] LayerMask layerMask;
     RaycastHit hit;
     [SerializeField] private Camera cam;
-    Interactable currentInteractable;
+    [SerializeField] Interactable currentInteractable;
 
     private void Awake()
     {
-
         interactionInputActionReference.action.Enable();
         interactionInputActionReference.action.started += OnInteract;
-
+        interactionInputActionReference.action.canceled += OnCancel;
     }
 
     private void OnInteract(InputAction.CallbackContext context)
@@ -32,13 +32,10 @@ public partial class InteractionHandler : MonoBehaviour
             {
                 if (currentInteractable == null)
                 {
-                    Debug.Log("Interactable detected");
                     currentInteractable = hit.collider.GetComponent<Interactable>();
-                    Debug.Log("Interacted");
-                    currentInteractable.Interact(hit, this);
-
+                    currentInteractable?.OnInteract?.Invoke(hit, this);
                 }
-                if (currentInteractable != null)
+                else
                 {
                     currentInteractable.OnInteractionPerformed?.Invoke(hit, this);
                 }
@@ -50,6 +47,21 @@ public partial class InteractionHandler : MonoBehaviour
                     currentInteractable = null;
                 }
             }
+        }
+    }
+    void Update()
+    {
+        if (!Physics.Raycast(ray, out hit, interactionDistance, layerMask) && currentInteractable != null)
+        {
+            Debug.Log("No interactuable");
+            currentInteractable = null;
+        }
+    }
+    public void OnCancel(InputAction.CallbackContext context)
+    {
+        if (context.canceled && currentInteractable != null)
+        {
+            currentInteractable = null;
         }
     }
     void OnDisable()

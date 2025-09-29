@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8741476520115994936}
   - component: {fileID: 4784087618847671130}
   - component: {fileID: 1242778406467504190}
-  - component: {fileID: 3310938678794739608}
+  - component: {fileID: 866040150408422798}
   m_Layer: 0
   m_Name: cuerpo_de_refrigerador
   m_TagString: Untagged
@@ -90,8 +90,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3310938678794739608
-BoxCollider:
+--- !u!64 &866040150408422798
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -108,9 +108,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.2319508, y: 2.3339558, z: 0.7642462}
-  m_Center: {x: 0.011516571, y: -0.06022805, z: -0.07920547}
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2132166406796086648, guid: 0e2d7a075227f574aba4d11c1e5d51ec, type: 3}
 --- !u!1 &3856204394596205789
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,4 +339,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DoorController
   sensitivity: 1.5
   inverseDoor: 1
+  isOpen: 1
   mouseLookAction: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  doorOpeningSound: {fileID: 0}

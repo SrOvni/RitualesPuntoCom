@@ -44,4 +44,9 @@ public class AudioPlayer : Singleton<AudioPlayer>
         yield return new WaitUntil(() => !audio.isPlaying);
         audio.clip = null;
     }
+
+    internal void Play(object metalHorseAudio)
+    {
+        throw new NotImplementedException();
+    }
 }

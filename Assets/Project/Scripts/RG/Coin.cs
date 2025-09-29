@@ -9,6 +9,8 @@ public class Coin : Interactable
 
     public override ItemType Type => type;
 
+    public override bool CanInteract { get; set; } = true;
+
     [SerializeField] ItemType type;
 
     public override string GetInteractText()
@@ -18,7 +20,6 @@ public class Coin : Interactable
 
     public override void Interact(GameObject interactor)
     {
-        //
     }
     void Awake()
     {
@@ -27,6 +28,7 @@ public class Coin : Interactable
 
     private void Pickup(RaycastHit _, InteractionHandler __)
     {
+        HorseDreamManager.Instance.metalHorse.CanInteract = true;
         Inventory inventory = __.GetComponent<Inventory>();
         if (inventory != null)
         {
