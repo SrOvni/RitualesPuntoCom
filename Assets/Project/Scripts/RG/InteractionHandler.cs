@@ -33,6 +33,12 @@ public partial class InteractionHandler : MonoBehaviour
                 if (currentInteractable == null)
                 {
                     currentInteractable = hit.collider.GetComponent<Interactable>();
+                    if (!currentInteractable.TryGetComponent(out WorldSpaceImageSpawner component))
+                    {
+                        var w = currentInteractable.AddComponent<WorldSpaceImageSpawner>();
+                        w.imageSprite = DayOneManager.Instance.E;
+                        w.SpawnWorldSpaceCanvas();
+                    }
                     currentInteractable?.OnInteract?.Invoke(hit, this);
                 }
                 else
