@@ -78,5 +78,7 @@ public class RitualManager : MonoBehaviour
                 }
             }
         }
+
+        LightManager.Instance.TurnOffLights();
     }
 }
