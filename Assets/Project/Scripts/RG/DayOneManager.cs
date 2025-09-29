@@ -7,13 +7,12 @@ public class DayOneManager : Singleton<DayOneManager>
     public bool FakeRitualWasBought { get => fakeRitualWasBought; set => fakeRitualWasBought = value; }
     [SerializeField] private bool realRitualWasBought;
     [SerializeField] private bool playerAte;
-    [SerializeField] private bool ritualIsInsideTheHouse;
-    [SerializeField] private bool fakeRitualFinished;
-    [SerializeField] private bool fuseIsOn;
+    public bool PlayerAte { get => playerAte; set => playerAte = value; }
     private bool fuseBoxIsTurnedOn;
 
     IEnumerator Start()
     {
+        
         //Despierta en su cuarto
         yield return new WaitUntil(() => fakeRitualWasBought);
         //Desbloquear puerta de su cuarto
@@ -21,15 +20,26 @@ public class DayOneManager : Singleton<DayOneManager>
         yield return new WaitUntil(() => playerAte);
         //Suena el timbre
         //Abrir puerta //Poner un collider para que no salga el jugador
-        yield return new WaitUntil(() => ritualIsInsideTheHouse);
-        //Cerrar puerta principal
-        //Coloca las velas
-        yield return new WaitUntil(() => fakeRitualFinished);
+        
         //Luces se apagan
         yield return new WaitUntil(() => fuseBoxIsTurnedOn);
         yield return new WaitUntil(() => realRitualWasBought);
         //Se va dormir
         //Cambiar escena
         yield return null;
+    }
+}
+public class DayTwoManager : Singleton<DayTwoManager>
+{
+    [SerializeField] private bool ritualIsInsideTheHouse;
+    [SerializeField] private bool fakeRitualFinished;
+    [SerializeField] private bool fuseIsOn;
+
+    IEnumerator Start()
+    {
+        yield return new WaitUntil(() => ritualIsInsideTheHouse);
+        //Cerrar puerta principal
+        //Coloca las velas
+        yield return new WaitUntil(() => fakeRitualFinished);
     }
 }

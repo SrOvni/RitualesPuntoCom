@@ -31,8 +31,8 @@ public class Computadora : Interactable
     {
         OnInteractionPerformed += GetScreenPosition;
         OnInteract += Interact;
-        screenMaterial = screen.material;
-        screenMaterial.color = off;
+        // screenMaterial = screen.material;
+        // screenMaterial.color = off;
         UICanvas.gameObject.SetActive(false);
 
     }
@@ -63,6 +63,8 @@ public class Computadora : Interactable
         // screenMaterial.color = off;
         // screen.gameObject.SetActive(false);
         UICanvas.gameObject.SetActive(false);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         // computerCursor.gameObject.SetActive(false);
     }
 
@@ -77,12 +79,20 @@ public class Computadora : Interactable
     }
     public new void Interact(RaycastHit hit, InteractionHandler interactor)
     {
+        GetComponent<Collider>().enabled = false;
         CameraManager.Instance.PrioritizeComputerCamera();
 
         StartCoroutine(TurnOnScreenWhenBlend());
         inputReader.DisableMovementInputs();
         // Cursor.lockState = CursorLockMode.Confined;
         // Cursor.visible = true;
+    }
+    public void TurnOffComputer()
+    {
+        CameraManager.Instance.PrioritizePlayerCamera();
+        TurnOff();
+        inputReader.EnableMovmentInput();   
+        enabled = false;
     }
 
     public IEnumerator TurnOnScreenWhenBlend()
