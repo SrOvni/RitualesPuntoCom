@@ -104,4 +104,9 @@ public class PlacementPoint : MonoBehaviour, IInteractable
         
         Debug.Log("Punto de colocación ha sido reseteado.");
     }
+
+    public GameObject GetPlacedItem()
+    {
+        return transform.GetChild(0).gameObject;
+    }
 }

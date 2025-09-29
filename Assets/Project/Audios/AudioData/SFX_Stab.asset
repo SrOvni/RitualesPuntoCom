@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50fe60e8e54d6624e90c2a218a8ab690, type: 3}
   m_Name: SFX_Stab
   m_EditorClassIdentifier: Assembly-CSharp::AudioData
-  Clip: {fileID: 8300000, guid: 387d012a48f97cf4f9340b8670b5be78, type: 3}
+  Clip: {fileID: 8300000, guid: bb53fc3b5f1b2b242995ceb011da31b0, type: 3}
   Volume: 70.8
   Loop: 0
   Pitch: 1
