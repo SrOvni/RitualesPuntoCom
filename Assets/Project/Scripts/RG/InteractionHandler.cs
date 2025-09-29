@@ -32,13 +32,10 @@ public partial class InteractionHandler : MonoBehaviour
             {
                 if (currentInteractable == null)
                 {
-                    Debug.Log("Interactable detected");
                     currentInteractable = hit.collider.GetComponent<Interactable>();
-                    Debug.Log("Interacted");
-                    currentInteractable.Interact(hit, this);
-
+                    currentInteractable?.OnInteract?.Invoke(hit, this);
                 }
-                if (currentInteractable != null)
+                else
                 {
                     currentInteractable.OnInteractionPerformed?.Invoke(hit, this);
                 }

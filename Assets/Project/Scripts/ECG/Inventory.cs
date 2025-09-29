@@ -49,20 +49,12 @@ public class Inventory : MonoBehaviour
 
         // Si es el primer item, seleccionarlo
 
-        currentIndex = inventoryList.Count - 1;
-        AudioPlayer audioPlayer = FindAnyObjectByType<AudioPlayer>();
-
-        if (audioPlayer != null && pickupItemAudio != null) 
-        {
-            audioPlayer.Play(pickupItemAudio);
-        }
-        else
-        {
-            Debug.Log($"No se pudo reproducir el audio {pickupItemAudio} en {audioPlayer} ");
-        }
+        currentIndex = inventoryList.Count - 1; 
+        AudioPlayer.Instance.Play(pickupItemAudio);
 
 
-            ShowItemAtIndex(currentIndex);
+
+        ShowItemAtIndex(currentIndex);
         ParentItem(currentIndex);
     }
     public void DeleteItem(GameObject item)
@@ -147,7 +139,7 @@ public class Inventory : MonoBehaviour
             currentIndex = 0;
             currentItem = inventoryList[0];
             ShowItemAtIndex(currentIndex);
-            
+
         }
     }
 

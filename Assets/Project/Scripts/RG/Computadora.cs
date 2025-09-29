@@ -19,6 +19,8 @@ public class Computadora : Interactable
     [SerializeField] ItemType type;
     public override ItemType Type => type;
 
+    public override bool CanInteract { get; set; } = true;
+
     [SerializeField] InputReader inputReader;
     [SerializeField] LayerMask computerScreenLayerMask;
 

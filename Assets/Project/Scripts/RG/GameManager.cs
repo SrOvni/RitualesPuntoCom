@@ -3,11 +3,10 @@ using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
-    [SerializeField] private float horseDreamDuration;
+    
     [SerializeField] private bool fakeRitualWasBought;
     public bool FakeRitualWasBought { get => fakeRitualWasBought; set => fakeRitualWasBought = value; }
     [SerializeField] private bool realRitualWasBought;
@@ -26,11 +25,7 @@ public class GameManager : Singleton<GameManager>
     {
         Debug.Log("Funciona el boton");
     }
-    public IEnumerator HorseDream()
-    {
-        yield return new WaitForSeconds(horseDreamDuration);
-        SceneManager.LoadScene(1);
-    }
+    
     public IEnumerator FirstDay()
     {
         //Sueño
@@ -61,10 +56,4 @@ public class GameManager : Singleton<GameManager>
         yield return new WaitForSeconds(longHorseDreamDuration);
 
     }
-}
-
-[CreateAssetMenu(fileName = "Dialogue")]
-public class Dialogue : ScriptableObject
-{
-    [SerializeField] Text text;
 }
