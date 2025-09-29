@@ -5,6 +5,7 @@ public class RitualManager : MonoBehaviour
 {
     [SerializeField] private List<PlacementPoint> ritualPoints = new List<PlacementPoint>();
     [SerializeField] private int totalRitualSteps = 1; // Solo los items que se Usan
+    [SerializeField] private GameObject Bloodbath;
 
     private int completedSteps = 0;
     [SerializeField] private bool isRitualCompleted = false;
@@ -80,5 +81,6 @@ public class RitualManager : MonoBehaviour
         }
 
         LightManager.Instance.TurnOffLights();
+        Bloodbath.SetActive(true);
     }
 }

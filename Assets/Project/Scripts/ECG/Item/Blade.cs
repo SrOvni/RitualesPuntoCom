@@ -60,6 +60,7 @@ public class Blade : Item, IUsable
         {
             // Mover el efecto a la posici�n actual del usuario antes de reproducirlo
             instantiatedParticles.transform.position = user.transform.position;
+            instantiatedParticles.transform.rotation = user.transform.rotation;
             instantiatedParticles.Play();
         }
 

@@ -20,7 +20,7 @@ public class Blood : MonoBehaviour
 
         // 2. Inicia la animación de movimiento
         transform.DOMove(endPosition, travelDistance / speed)
-            .SetEase(Ease.Linear) // Mantiene la velocidad constante
-            .SetLoops(-1, LoopType.Restart); // Repite la animación indefinidamente
+            .SetEase(Ease.Linear); // Mantiene la velocidad constante
+             // Repite la animación indefinidamente
     }
 }
