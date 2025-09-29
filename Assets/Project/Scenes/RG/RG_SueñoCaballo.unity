@@ -256,7 +256,6 @@ GameObject:
   m_Component:
   - component: {fileID: 431834885}
   - component: {fileID: 431834884}
-  - component: {fileID: 431834886}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -278,7 +277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
   Priority:
     Enabled: 1
-    m_Value: 0
+    m_Value: 1
   OutputChannel: 1
   StandbyUpdate: 2
   m_StreamingVersion: 20241001
@@ -315,30 +314,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 431834883}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.18492292, y: 0.008252464, z: -0.0015534605, w: 0.98271716}
-  m_LocalPosition: {x: -17.040377, y: 2.8354628, z: -2.8728797}
+  m_LocalRotation: {x: 0.13185841, y: -0.68905073, z: 0.12966143, w: 0.70072144}
+  m_LocalPosition: {x: 0.6700292, y: 1.2213084, z: -0.050376777}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1173494124415716392}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &431834886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 431834883}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBasicMultiChannelPerlin
-  NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
-  PivotOffset: {x: 0, y: 0, z: 0}
-  AmplitudeGain: 0.22
-  FrequencyGain: 5.66
-  m_NoiseOffsets: {x: -277.08997, y: 131.49915, z: 745.9929}
 --- !u!1 &443208580
 GameObject:
   m_ObjectHideFlags: 0
@@ -2100,6 +2082,17 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!114 &993212656 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5281127676061804101, guid: 3ea60bffc0fe4be44888b893f5fcf1ae, type: 3}
+  m_PrefabInstance: {fileID: 4537424570116118696}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
 --- !u!65 &1020918002
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3280,10 +3273,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HorseDreamManager
   metalHorse: {fileID: 4616774561725581953}
-  horseDreamDuration: 10
+  horseDreamDuration: 1
   horseCamera: {fileID: 431834884}
   MetalHorseAudio: {fileID: 11400000, guid: d1b2c0b728f20ac4788615fd2b65ff5e, type: 2}
   brain: {fileID: 1571694044}
+  playerCamera: {fileID: 993212656}
 --- !u!4 &1579925249
 Transform:
   m_ObjectHideFlags: 0
@@ -4924,11 +4918,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8759986121838257293}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.000000021073431, y: -0, z: 0.0000004636152, w: 1}
   m_LocalPosition: {x: 0.06285162, y: 1.1745083, z: -0.0000000020354678}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 431834885}
   m_Father: {fileID: 4089304160841374170}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1384986858130953985
@@ -5171,6 +5166,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5281127676061804101, guid: 3ea60bffc0fe4be44888b893f5fcf1ae, type: 3}
+      propertyPath: Priority.Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5281127676061804101, guid: 3ea60bffc0fe4be44888b893f5fcf1ae, type: 3}
+      propertyPath: Priority.m_Value
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5670152982025829725, guid: 3ea60bffc0fe4be44888b893f5fcf1ae, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6762217695558176393, guid: 3ea60bffc0fe4be44888b893f5fcf1ae, type: 3}
       propertyPath: pickupItemAudio
       value: 
@@ -5263,10 +5270,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetalHorse
   canInteract: 0
-  verticalAmplitude: 0.5
-  verticalDuration: 2
-  swayAngle: 10
-  swayDuration: 3
+  toyHorse: {fileID: 8759986121838257293}
+  radius: 0.14
+  circleDuration: 6
+  verticalAmplitude: 0.1
+  verticalDuration: 1
   requiredItemType: 9
 --- !u!4 &4715472312359766877
 Transform:
@@ -8895,4 +8903,3 @@ SceneRoots:
   - {fileID: 8206696798035835931}
   - {fileID: 1098366792}
   - {fileID: 1579925249}
-  - {fileID: 431834885}

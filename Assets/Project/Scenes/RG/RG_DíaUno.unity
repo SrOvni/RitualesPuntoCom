@@ -809,7 +809,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1012152533}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: set_FakeRitualWasBought
         m_Mode: 6
@@ -821,7 +821,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1012152533}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Log
         m_Mode: 1
@@ -4054,17 +4054,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1012152533 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7876206446894529928, guid: a78a61c1612223241b9c96a156da22fa, type: 3}
-  m_PrefabInstance: {fileID: 6423786912341862362}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dc4dc6d05add5941a4c97d7dfdbbd65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameManager
 --- !u!1 &1016310971
 GameObject:
   m_ObjectHideFlags: 0
@@ -6045,7 +6034,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1012152533}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: set_FakeRitualWasBought
         m_Mode: 6
@@ -6057,7 +6046,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1012152533}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Log
         m_Mode: 1
@@ -8331,6 +8320,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1976526212}
+  - component: {fileID: 1976526213}
   m_Layer: 0
   m_Name: "D\xEDaUnoManager"
   m_TagString: Untagged
@@ -8353,6 +8343,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1976526213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976526211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84848df3458d3844b80f6fff94f2fbad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DayOneManager
+  fakeRitualWasBought: 0
+  realRitualWasBought: 0
+  playerAte: 0
+  ritualIsInsideTheHouse: 0
+  fakeRitualFinished: 0
+  fuseIsOn: 0
 --- !u!1 &1992866693
 GameObject:
   m_ObjectHideFlags: 0
@@ -16737,11 +16745,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7876206446894529928, guid: a78a61c1612223241b9c96a156da22fa, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3132418923107896863, guid: a78a61c1612223241b9c96a156da22fa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6423786912341862364}
   m_SourcePrefab: {fileID: 100100000, guid: a78a61c1612223241b9c96a156da22fa, type: 3}
+--- !u!1 &6423786912341862363 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3132418923107896863, guid: a78a61c1612223241b9c96a156da22fa, type: 3}
+  m_PrefabInstance: {fileID: 6423786912341862362}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6423786912341862364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6423786912341862363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84848df3458d3844b80f6fff94f2fbad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DayOneManager
+  fakeRitualWasBought: 0
+  realRitualWasBought: 0
+  playerAte: 0
+  ritualIsInsideTheHouse: 0
+  fakeRitualFinished: 0
+  fuseIsOn: 0
 --- !u!1 &6455456990737485202
 GameObject:
   m_ObjectHideFlags: 0
@@ -18360,27 +18395,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 913309735299700999, guid: 3ea60bffc0fe4be44888b893f5fcf1ae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.281016
+      value: -0.0041880663
       objectReference: {fileID: 0}
     - target: {fileID: 913309735299700999, guid: 3ea60bffc0fe4be44888b893f5fcf1ae, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.23020029
+      value: 0.75699997
       objectReference: {fileID: 0}
     - target: {fileID: 913309735299700999, guid: 3ea60bffc0fe4be44888b893f5fcf1ae, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.9318198
+      value: 0.0472487
       objectReference: {fileID: 0}
     - target: {fileID: 913309735299700999, guid: 3ea60bffc0fe4be44888b893f5fcf1ae, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.9624559
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 913309735299700999, guid: 3ea60bffc0fe4be44888b893f5fcf1ae, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.27143806
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 913309735299700999, guid: 3ea60bffc0fe4be44888b893f5fcf1ae, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2043895556303941364, guid: 3ea60bffc0fe4be44888b893f5fcf1ae, type: 3}
       propertyPath: m_LocalPosition.x
