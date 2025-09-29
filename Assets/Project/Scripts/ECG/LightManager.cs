@@ -7,6 +7,9 @@ public class LightManager : MonoBehaviour
 
     [SerializeField] private GameObject lightParent;
 
+    [SerializeField] private AudioData powerDownSound;
+
+    public bool IsOn { get; private set; }
     private void Awake()
     {
         // Si ya hay una instancia, destruye este nuevo objeto para asegurar que solo haya una.
@@ -20,12 +23,27 @@ public class LightManager : MonoBehaviour
             Instance = this;
             
         }
+
+        if (lightParent != null)
+        {
+            IsOn = lightParent.activeSelf;
+        }
     }
 
     public void TurnOffLights()
     {
         if (lightParent != null)
         {
+            AudioPlayer audioPlayer = FindAnyObjectByType<AudioPlayer>();
+
+            if (audioPlayer != null && powerDownSound != null)
+            {
+                audioPlayer.Play(powerDownSound);
+            }
+            else
+            {
+                Debug.Log($"No se pudo reproducir el audio {powerDownSound} en {audioPlayer} ");
+            }
             lightParent.SetActive(false);
             Debug.Log("Las luces han sido apagadas.");
         }
@@ -33,6 +51,8 @@ public class LightManager : MonoBehaviour
         {
             Debug.LogWarning("No se asignó un objeto padre de luces.");
         }
+
+        IsOn = false;
     }
 
     public void TurnOnLights()
@@ -41,6 +61,32 @@ public class LightManager : MonoBehaviour
         {
             lightParent.SetActive(true);
             Debug.Log("Las luces han sido encendidas.");
+        }
+        else
+        {
+            Debug.LogWarning("No se asignó un objeto padre de luces.");
+        }
+
+        IsOn = true;
+    }
+
+    public void ToggleLights()
+    {
+        if (lightParent != null)
+        {
+            // Invierte el estado de las luces
+            IsOn = !IsOn;
+            lightParent.SetActive(IsOn);
+
+            if (IsOn)
+            {
+                //DayOneManager.Instance.PlayerAte = true;
+                Debug.Log("Las luces han sido encendidas.");
+            }
+            else
+            {
+                Debug.Log("Las luces han sido apagadas.");
+            }
         }
         else
         {
