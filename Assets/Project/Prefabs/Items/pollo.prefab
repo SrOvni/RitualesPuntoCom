@@ -176,4 +176,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Pollito
   interactText: Pollito
   itemType: 0
-  eatAudio: {fileID: 0}
+  eatAudio: {fileID: 11400000, guid: 4c7952211aa901a4a8754fe4f1c19c50, type: 2}

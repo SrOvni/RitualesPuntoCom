@@ -51,6 +51,8 @@ public class LightManager : MonoBehaviour
         {
             Debug.LogWarning("No se asignó un objeto padre de luces.");
         }
+
+        IsOn = false;
     }
 
     public void TurnOnLights()
@@ -64,6 +66,8 @@ public class LightManager : MonoBehaviour
         {
             Debug.LogWarning("No se asignó un objeto padre de luces.");
         }
+
+        IsOn = true;
     }
 
     public void ToggleLights()

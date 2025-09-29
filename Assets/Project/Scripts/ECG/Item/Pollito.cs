@@ -15,8 +15,14 @@ public class Pollito : Item, IUsable
         {
             Debug.Log($"No se pudo reproducir el audio {eatAudio} en {audioPlayer} ");
         }
+
+        Inventory inventory = user.GetComponent<Inventory>();
+        if (inventory != null)
+        {
+            inventory.DeleteItem(this.gameObject);
+        }
         DayOneManager.Instance.PlayerAte = true;
 
-        LightManager.Instance.ToggleLights();
+        
     }
 }
