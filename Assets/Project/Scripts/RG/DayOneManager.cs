@@ -19,6 +19,7 @@ public class DayOneManager : Singleton<DayOneManager>
         //Desbloquear puerta de su cuarto
         //NO se puede abrir la puerta principal
         yield return new WaitUntil(() => playerAte);
+        // AudioPlayer.Instance.Play()
         //Suena el timbre\
         yield return new WaitUntil(() => fakeRitualFinished);
         //Abrir puerta //Poner un collider para que no salga el jugador
