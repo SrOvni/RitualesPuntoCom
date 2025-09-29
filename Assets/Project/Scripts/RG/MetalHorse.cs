@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 
 public class MetalHorse : Interactable
 {
@@ -8,33 +9,26 @@ public class MetalHorse : Interactable
     public override Action OnInteractionStop { get; set; } = delegate { };
     public override Action<RaycastHit, InteractionHandler> OnInteractionPerformed { get; set; } = delegate { };
     [SerializeField] bool canInteract = false;
+    public GameObject toyHorse;
     private void Awake()
     {
         OnInteract += TryInsertCoint;
     }
+    [Header("Movimiento circular")]
+    [SerializeField] private float radius = 2f;        // radio del círculo
+    [SerializeField] private float circleDuration = 6f; // tiempo para dar una vuelta
+
     [Header("Movimiento vertical")]
-    [SerializeField] private float verticalAmplitude = 0.5f; // Altura máxima (arriba/abajo)
-    [SerializeField] private float verticalDuration = 2f;    // Tiempo de subida o bajada
+    [SerializeField] private float verticalAmplitude = 0.5f; // altura de subida/bajada
+    [SerializeField] private float verticalDuration = 2f;
+    private Vector3 centerPos;
 
-    [Header("Balanceo lateral (opcional)")]
-    [SerializeField] private float swayAngle = 10f;          // Grados de inclinación
-    [SerializeField] private float swayDuration = 3f;        // Tiempo de ida/vuelta del balanceo
-
-    private void DoCarousel()
+    public void DoCarousel()
     {
-        /*
-        transform
-            .DOMoveY(transform.position.y + verticalAmplitude, verticalDuration)
+        toyHorse.transform
+            .DOMoveY(centerPos.y + verticalAmplitude, verticalDuration)
             .SetEase(Ease.InOutSine)
             .SetLoops(-1, LoopType.Yoyo);
-
-        // Balanceo lateral suave (rotación alrededor del eje Z, como un ligero mecer)
-        transform
-            .DORotate(new Vector3(0f, 0f, swayAngle), swayDuration)
-            .SetEase(Ease.InOutSine)
-            .SetLoops(-1, LoopType.Yoyo);
-            */
-        
     }
 
     private void TryInsertCoint(RaycastHit hit, InteractionHandler handler)
@@ -80,5 +74,5 @@ public class MetalHorse : Interactable
         Debug.Log("Hola");
     }
 
-    
+
 }

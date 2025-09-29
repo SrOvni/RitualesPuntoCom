@@ -14,9 +14,11 @@ public class HorseDreamManager : Singleton<HorseDreamManager>
     [SerializeField] private AudioData MetalHorseAudio;
     GameObject metalHorseGameobject;
     [SerializeField] CinemachineBrain brain;
+    [SerializeField] CinemachineCamera playerCamera;
 
     private void Start()
     {
+
         horseDreamTimer = new(horseDreamDuration);
         GameObject canvasGO = new GameObject("Canvas");
         Canvas canvas = canvasGO.AddComponent<Canvas>();
@@ -75,6 +77,7 @@ public class HorseDreamManager : Singleton<HorseDreamManager>
         Debug.Log("Horse dream starts");
         horseCamera.Prioritize();
         yield return new WaitForSeconds(brain.DefaultBlend.Time);
+        metalHorse.DoCarousel();
         progressSlider.gameObject.SetActive(true);
         horseDreamTimer.Start();
         AudioPlayer.Instance.Play(MetalHorseAudio);
