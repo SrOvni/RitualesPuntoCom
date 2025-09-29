@@ -54,7 +54,7 @@ public class RitualManager : MonoBehaviour
         foreach (PlacementPoint point in points)
         {
             ritualPoints.Add(point);
-            Debug.Log($"Punto de colocación '{point.name}' agregado al ritual.");
+            //Debug.Log($"Punto de colocación '{point.name}' agregado al ritual.");
         }
     }
 
@@ -63,5 +63,20 @@ public class RitualManager : MonoBehaviour
         Debug.Log("¡El ritual ha comenzado!");
         
         this.enabled = false;
+
+        foreach (var point in ritualPoints)
+        {
+            // Assuming PlacementPoint has a method to get the placed item
+            GameObject placedItem = point.GetPlacedItem();
+
+            if (placedItem != null)
+            {
+                Candle candle = placedItem.GetComponent<Candle>();
+                if (candle != null)
+                {
+                    candle.LightCandle();
+                }
+            }
+        }
     }
 }

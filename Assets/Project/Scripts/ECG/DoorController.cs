@@ -6,8 +6,10 @@ public class DoorController : MonoBehaviour, IInteractable
     [Header("Door Settings")]
     [SerializeField] private float sensitivity = 1.5f;
     [SerializeField] private bool inverseDoor;
+    [SerializeField] private bool isOpen = true;
     [SerializeField] private InputActionReference mouseLookAction;
 
+    [SerializeField] private AudioData doorOpeningSound;
     private Rigidbody rb;
     private bool isBeingHeld = false;
     private Transform playerCamera;
@@ -51,7 +53,16 @@ public class DoorController : MonoBehaviour, IInteractable
         // Guardamos el resultado (1 para en frente, -1 para detrás) en nuestra variable.
         interactionSide = Mathf.Sign(dot);
     }
-
+    public void Open()
+    {
+        if (!isOpen)
+        {
+            isOpen = true;
+            
+            AudioPlayer audioManager = FindAnyObjectByType<AudioPlayer>();
+            if (audioManager != null && doorOpeningSound != null) { audioManager.Play(doorOpeningSound); }
+        }
+    }
     public void StopInteraction()
     {
         isBeingHeld = false;
@@ -59,7 +70,7 @@ public class DoorController : MonoBehaviour, IInteractable
 
     void FixedUpdate()
     {
-        if (isBeingHeld)
+        if (isBeingHeld && isOpen)
         {
             Vector2 mouseDelta = mouseLookAction.action.ReadValue<Vector2>();
             float mouseX = mouseDelta.x;
@@ -75,4 +86,5 @@ public class DoorController : MonoBehaviour, IInteractable
             rb.AddTorque(rotationAxis * mouseX * sensitivity * interactionSide, ForceMode.VelocityChange);
         }
     }
+
 }

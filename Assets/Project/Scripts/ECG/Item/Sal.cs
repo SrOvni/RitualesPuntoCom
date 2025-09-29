@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class Sal : Item, IUsable
@@ -6,6 +7,12 @@ public class Sal : Item, IUsable
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float spawnOffset = 0.05f;
     [SerializeField] AudioData salDropAudio;
+
+    private void Start()
+    {
+        
+    }
+    
     public void Use(GameObject user)
     {
         GameObject instantiatedCircle = null;
@@ -46,6 +53,8 @@ public class Sal : Item, IUsable
             ritualManager.AddRitualPoints(instantiatedCircle);
             // El RitualManager ahora puede manejar su propio contador de pasos
             ritualManager.MarkUsedItemStepComplete(); // Esto podrías dejarlo en AddRitualPoints
+
+            FadeAnimation();
         }
 
         // El inventario elimina el objeto de sal
@@ -54,5 +63,28 @@ public class Sal : Item, IUsable
         {
             inventory.DeleteItem(this.gameObject);
         }
+
+    }
+    private void FadeAnimation()
+    {
+        MeshRenderer renderer = gameObject.GetComponent<MeshRenderer>();
+        Debug.Log("iniciando");
+        if (renderer == null) return;
+        Debug.Log("Empezando Animacion");
+        // Get a single reference to the material
+        Material material = renderer.material;
+
+        // Get the original color to fade to
+        Color startColor = material.color;
+
+        // Create the invisible color with 0 alpha
+        Color invisibleColor = startColor;
+        invisibleColor.a = 0;
+
+        // Set the initial color to invisible
+        material.SetColor("_Color", invisibleColor);
+
+        // Animate the color to the final color
+        material.DOColor(startColor, 1.0f);
     }
 }

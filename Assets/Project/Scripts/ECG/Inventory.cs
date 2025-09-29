@@ -90,6 +90,12 @@ public class Inventory : MonoBehaviour
 
         // Guarda el objeto actual para soltarlo
         GameObject itemToDrop = currentItem;
+        // Animate the item before dropping it
+        InventoryAnimation itemAnim = itemToDrop.GetComponent<InventoryAnimation>();
+        if (itemAnim != null)
+        {
+            itemAnim.AnimateDeselection();
+        }
 
         currentItem = null;
 
@@ -99,7 +105,7 @@ public class Inventory : MonoBehaviour
         // Desparenta y activa el objeto en el mundo
         itemToDrop.transform.SetParent(null);
 
-        itemToDrop.transform.localScale = scale; // Usa la escala que guardaste al recogerlo
+        //itemToDrop.transform.localScale = scale; // Usa la escala que guardaste al recogerlo
         itemToDrop.SetActive(true);
         itemToDrop.transform.position = itemPosition.position;
         itemToDrop.transform.rotation = itemPosition.rotation;
@@ -158,7 +164,15 @@ public class Inventory : MonoBehaviour
         // Eliminar el objeto del inventario.
         GameObject itemToPlace = currentItem;
 
+        InventoryAnimation itemAnim = itemToPlace.GetComponent<InventoryAnimation>();
+        if (itemAnim != null)
+        {
+           // itemAnim.AnimateDeselection();
+        }
+
         inventoryList.RemoveAt(currentIndex);
+
+        
 
         currentItem = null;
 
@@ -217,14 +231,29 @@ public class Inventory : MonoBehaviour
     {
         if (index < 0 || index >= inventoryList.Count) return;
 
-        // Ocultar item actual
+        // Animate the current item back to its normal size
         if (currentItem != null)
         {
+            // Get the animation script from the old item
+            InventoryAnimation oldItemAnim = currentItem.GetComponent<InventoryAnimation>();
+            if (oldItemAnim != null)
+            {
+                oldItemAnim.AnimateDeselection();
+            }
+
+            // Ocultar item actual
             currentItem.SetActive(false);
         }
 
         // Mostrar nuevo item
         currentItem = inventoryList[index];
         currentItem.SetActive(true);
+
+        // Animate the new item to highlight it
+        InventoryAnimation newItemAnim = currentItem.GetComponent<InventoryAnimation>();
+        if (newItemAnim != null)
+        {
+            newItemAnim.AnimateSelection();
+        }
     }
 }
