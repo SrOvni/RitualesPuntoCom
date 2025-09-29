@@ -76,6 +76,7 @@ public class LightManager : MonoBehaviour
 
             if (IsOn)
             {
+                //DayOneManager.Instance.PlayerAte = true;
                 Debug.Log("Las luces han sido encendidas.");
             }
             else
